@@ -28,7 +28,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="ca59f916-7096-4954-baa3-364b5bd74142">
-      <console name="Team DB" type="STANDARD" schema="csc1035_team33" session="Main" />
+      <console name="Team DB" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
