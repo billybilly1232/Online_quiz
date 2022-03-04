@@ -28,7 +28,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="2147628d-e74d-4b89-b249-4395d4c9b256">
-      <console name="Eden's DB" type="STANDARD" schema="c1016129" session="Main" />
+      <console name="Eden's DB" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
