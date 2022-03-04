@@ -25,8 +25,10 @@ public class Question {
     @Column
     private boolean incorrectlyAnswered;
 
+    // constrictor for the Question class
     public Question(){}
 
+    // getters and setters for -question class
     public int getQuestionID() {
         return questionID;
     }
