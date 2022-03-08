@@ -1,4 +1,6 @@
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "QUESTION")
 public class Question {
@@ -24,6 +26,9 @@ public class Question {
 
     @Column
     private boolean incorrectlyAnswered;
+
+    @ManyToMany(mappedBy = "question")
+    private Set<Quiz> quizes = new HashSet<>();
 
     // constrictor for the Question class
     public Question(){}
