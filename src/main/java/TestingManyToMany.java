@@ -6,7 +6,7 @@ import utility.HibernateUtil;
 
 import java.util.*;
 
-public class ManyToManyMain {
+public class TestingManyToMany {
 
     public static void main(String[] args) {
         Session session = null;
