@@ -28,11 +28,13 @@ public class Database {
             session.save(q);
             // saves the transaction
             session.getTransaction().commit();
-        } catch (HibernateException e) {
+        }
+        catch (HibernateException e) {
             // if something goes wrong, rollback to the previous transaction
             if (session!=null) session.getTransaction().rollback();
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             session.close();
             // closes the session
         }

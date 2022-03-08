@@ -2,13 +2,11 @@ import csc1035.project2.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-public class Testing {
-    /* for testing code.
-         ie database connections, adding things, methods, ect
-     */
+public class TestingDatabase {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+        try{
             /*
             test for setting a question to the db with hardcoded data.
             It did work
@@ -30,9 +28,15 @@ public class Testing {
             session.save(q);
             // saves the transaction
             session.getTransaction().commit();
-            // closes the session
+        }
+        catch (HibernateException e) {
+            // if something goes wrong, rollback to the previous transaction
+            if (session!=null) session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        finally {
             session.close();
-
+            // closes the session
         }
     }
-
+}
