@@ -15,6 +15,7 @@
         <property name="hbm2ddl.auto">update </property>
 
         <mapping class="Question" /> <!--- Add a new mapping class for a new table in the database -->
+        <mapping class="Quiz" />
 
 
     </session-factory>
