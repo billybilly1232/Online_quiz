@@ -18,8 +18,8 @@ public class Quiz {
     @ManyToMany
     @JoinTable(
             name = "QUESTION",
-            joinColumns = {@JoinColumn(name = "quizId")},
-            inverseJoinColumns = {@JoinColumn(name = "questionId")})
+            joinColumns = {@JoinColumn(name = "quizID")},
+            inverseJoinColumns = {@JoinColumn(name = "questionID")})
     private Set<Question> questions = new HashSet<>();
 
     public int getQuizID() {
