@@ -15,11 +15,7 @@ public class Quiz {
     @Column
     private int lengthOfQuiz;
 
-    @ManyToMany
-    @JoinTable(
-            name = "QUESTION",
-            joinColumns = {@JoinColumn(name = "quizID")},
-            inverseJoinColumns = {@JoinColumn(name = "questionID")})
+    @ManyToMany(mappedBy = "quizes")
     private Set<Question> questions = new HashSet<>();
 
     public int getQuizID() {

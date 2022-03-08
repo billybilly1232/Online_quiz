@@ -27,8 +27,14 @@ public class Question {
     @Column
     private boolean incorrectlyAnswered;
 
-    @ManyToMany(mappedBy = "question")
-    private Set<Quiz> quizes = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "QUIZ_QUESTION",
+            joinColumns = {@JoinColumn(name = "questionID")},
+            inverseJoinColumns = {@JoinColumn(name = "quizID")})
+    private Set<Question> quizes = new HashSet<>();
+
+
 
     // constrictor for the Question class
     public Question(){}
