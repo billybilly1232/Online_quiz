@@ -39,6 +39,16 @@ public class Question {
     // constrictor for the Question class
     public Question(){}
 
+    public Question(String question, String topicOfQuestion, String typeOfQuestion, String answer, int marks, boolean incorrectlyAnswered, Set<Question> quizzes) {
+        this.question = question;
+        this.topicOfQuestion = topicOfQuestion;
+        this.typeOfQuestion = typeOfQuestion;
+        this.answer = answer;
+        this.marks = marks;
+        this.incorrectlyAnswered = incorrectlyAnswered;
+        this.quizzes = quizzes;
+    }
+
     // getters and setters for question class
     public int getQuestionID() {
         return questionID;
