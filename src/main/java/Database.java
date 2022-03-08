@@ -18,10 +18,10 @@ public class Database {
             // creates a new instance of the question class
             Question q = new Question();
             // sets the fields of the class to hardcoded data
-            q.setTopic("Maths");
+            q.setTopicOfQuestion("Maths");
             q.setType("SAQ");
-            q.setQuestionString("9+10?");
-            q.setAnswerString("21");
+            q.setQuestion("9+10?");
+            q.setAnswer("21");
             q.setMarks(2);
             q.setIncorrectlyAnswered(false);
             // saves the question

@@ -8,16 +8,16 @@ public class Question {
     private int questionID;
 
     @Column
-    private String questionString;
+    private String question;
 
     @Column
-    private String topic;
+    private String topicOfQuestion;
 
     @Column
-    private String type;
+    private String typeOfQuestion;
 
     @Column
-    private String answerString;
+    private String answer;
 
     @Column
     private int marks;
@@ -37,36 +37,36 @@ public class Question {
         this.questionID = questionID;
     }
 
-    public String getQuestionString() {
-        return questionString;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setQuestionString(String questionString) {
-        this.questionString = questionString;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getTopicOfQuestion() {
+        return topicOfQuestion;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setTopicOfQuestion(String topic) {
+        this.topicOfQuestion = topic;
     }
 
-    public String getType() {
-        return type;
+    public String getTypeOfQuestion() {
+        return typeOfQuestion;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.typeOfQuestion = type;
     }
 
-    public String getAnswerString() {
-        return answerString;
+    public String getAnswer() {
+        return answer;
     }
 
-    public void setAnswerString(String answerString) {
-        this.answerString = answerString;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public int getMarks() {
