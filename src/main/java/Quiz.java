@@ -18,6 +18,8 @@ public class Quiz {
     @ManyToMany(mappedBy = "quizzes")
     private Set<Question> questions = new HashSet<>();
 
+
+
     public int getQuizID() {
         return quizID;
     }
