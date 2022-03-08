@@ -1,8 +1,7 @@
-package relationships.manytomany;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import utility.HibernateUtil;
+import csc1035.project2.HibernateUtil;
 
 import java.util.*;
 
@@ -11,33 +10,26 @@ public class TestingManyToMany {
     public static void main(String[] args) {
         Session session = null;
 
-        // create objects
-        Question question1 = new Question("");
+        Question q1 = new Question("What is life?","Existensial Questions","LAQ","Nobody knows",1,false);
+        Question q2 = new Question("Why Git so bad?","Git","SAQ","Science",12,false);
+        Set<Question> questions = new HashSet<>(Arrays.asList(q1,q2));
+        Quiz quiz1 = new Quiz("Computer Science",2);
+        Set<Quiz> quizzes = new HashSet<>(Arrays.asList(quiz1));
 
-        Set<Question> question1 = new HashSet<>(Arrays.asList(question1));
 
-        Quiz quiz1 = new Quiz("");
 
-        Set<Quiz> quiz1 = new HashSet<>(Arrays.asList(quiz1));
-
-        // Create
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
-            // save objects to database
-            for (Question question : question1) {
-                session.persist(question1);
+            for (Question question : questions){
+                session.save(question);
             }
-            for (Quiz quiz : quiz1) {
-                session.persist(quiz1);
+            for (Quiz quiz : quizzes){
+                session.save(quiz);
             }
-
-            // create relationship in student and save again
-            // modules did not exist when first saved
-            for (Question question : question1) {
-                Question.setModules(quiz1);
-                session.persist(question1);
+            for (Question question : questions){
+                question.setQuizzes(quizzes);
+                session.save(question);
             }
 
             session.getTransaction().commit();
@@ -46,6 +38,10 @@ public class TestingManyToMany {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
     }
+
+}

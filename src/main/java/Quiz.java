@@ -20,6 +20,14 @@ public class Quiz {
 
 
 
+    public Quiz() {
+    }
+
+    public Quiz(String topicOfQuiz, int lengthOfQuiz) {
+        this.topicOfQuiz = topicOfQuiz;
+        this.lengthOfQuiz = lengthOfQuiz;
+    }
+
     public int getQuizID() {
         return quizID;
     }

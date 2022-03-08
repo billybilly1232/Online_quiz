@@ -32,24 +32,23 @@ public class Question {
             name = "QUIZ_QUESTION",
             joinColumns = {@JoinColumn(name = "questionID")},
             inverseJoinColumns = {@JoinColumn(name = "quizID")})
-    private Set<Question> quizzes = new HashSet<>();
+    private Set<Quiz> quizzes = new HashSet<>();
+
 
 
 
     // constrictor for the Question class
     public Question(){}
 
-    public Question(String question, String topicOfQuestion, String typeOfQuestion, String answer, int marks, boolean incorrectlyAnswered, Set<Question> quizzes) {
+    public Question(String question, String topicOfQuestion, String typeOfQuestion, String answer, int marks, boolean incorrectlyAnswered) {
         this.question = question;
         this.topicOfQuestion = topicOfQuestion;
         this.typeOfQuestion = typeOfQuestion;
         this.answer = answer;
         this.marks = marks;
         this.incorrectlyAnswered = incorrectlyAnswered;
-        this.quizzes = quizzes;
     }
 
-    // getters and setters for question class
     public int getQuestionID() {
         return questionID;
     }
@@ -70,16 +69,16 @@ public class Question {
         return topicOfQuestion;
     }
 
-    public void setTopicOfQuestion(String topic) {
-        this.topicOfQuestion = topic;
+    public void setTopicOfQuestion(String topicOfQuestion) {
+        this.topicOfQuestion = topicOfQuestion;
     }
 
     public String getTypeOfQuestion() {
         return typeOfQuestion;
     }
 
-    public void setType(String type) {
-        this.typeOfQuestion = type;
+    public void setTypeOfQuestion(String typeOfQuestion) {
+        this.typeOfQuestion = typeOfQuestion;
     }
 
     public String getAnswer() {
@@ -104,5 +103,13 @@ public class Question {
 
     public void setIncorrectlyAnswered(boolean incorrectlyAnswered) {
         this.incorrectlyAnswered = incorrectlyAnswered;
+    }
+
+    public Set<Quiz> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(Set<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 }

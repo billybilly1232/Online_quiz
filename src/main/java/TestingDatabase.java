@@ -19,7 +19,7 @@ public class TestingDatabase {
             Question q = new Question();
             // sets the fields of the class to hardcoded data
             q.setTopicOfQuestion("Maths");
-            q.setType("SAQ");
+            //q.setType("SAQ");
             q.setQuestion("9+10?");
             q.setAnswer("21");
             q.setMarks(2);
