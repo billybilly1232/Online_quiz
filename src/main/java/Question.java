@@ -28,7 +28,7 @@ public class Question {
     // constrictor for the Question class
     public Question(){}
 
-    // getters and setters for -question class
+    // getters and setters for question class
     public int getQuestionID() {
         return questionID;
     }
