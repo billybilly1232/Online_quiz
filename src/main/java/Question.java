@@ -32,7 +32,7 @@ public class Question {
             name = "QUIZ_QUESTION",
             joinColumns = {@JoinColumn(name = "questionID")},
             inverseJoinColumns = {@JoinColumn(name = "quizID")})
-    private Set<Question> quizes = new HashSet<>();
+    private Set<Question> quizzes = new HashSet<>();
 
 
 

@@ -15,7 +15,7 @@ public class Quiz {
     @Column
     private int lengthOfQuiz;
 
-    @ManyToMany(mappedBy = "quizes")
+    @ManyToMany(mappedBy = "quizzes")
     private Set<Question> questions = new HashSet<>();
 
     public int getQuizID() {
