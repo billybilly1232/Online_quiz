@@ -16,6 +16,7 @@
 
         <mapping class="Question" /> <!--- Add a new mapping class for a new table in the database -->
         <mapping class="Quiz" />
+        <mapping class="Log" />
 
 
     </session-factory>

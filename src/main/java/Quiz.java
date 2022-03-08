@@ -1,5 +1,6 @@
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "QUIZ")
@@ -17,6 +18,9 @@ public class Quiz {
 
     @ManyToMany(mappedBy = "quizzes")
     private Set<Question> questions = new HashSet<>();
+
+    @OneToMany(mappedBy = "quiz")
+    private List<Log> logs;
 
 
 
@@ -58,5 +62,13 @@ public class Quiz {
 
     public void setQuestions(Set<Question> questions) {
         this.questions = questions;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
     }
 }
