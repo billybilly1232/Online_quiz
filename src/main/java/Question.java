@@ -37,9 +37,6 @@ public class Question {
             inverseJoinColumns = {@JoinColumn(name = "quizID")})
     private Set<Quiz> quizzes = new HashSet<>();
 
-
-
-
     // constrictor for the Question class
     public Question(){}
 

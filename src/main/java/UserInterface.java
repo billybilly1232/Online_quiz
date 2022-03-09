@@ -5,6 +5,7 @@ public class UserInterface {
     }
 
     public void run() {
+        Database d = new Database();
         boolean quit = false;
         // sets the quit value to false
         Scanner sc = new Scanner(System.in);
@@ -22,8 +23,11 @@ public class UserInterface {
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1 ->// option 1
-                        System.out.println("Option 1");
+                case 1 ->{
+                    // option 1
+                    System.out.println("Create a question.");
+                    d.createQuestion(questionDetails());
+                }
                 case 2 -> // tbc
                         System.out.println("Option 2");
                 case 3 -> // tbc
@@ -32,28 +36,46 @@ public class UserInterface {
                         System.out.println("Option 4");
                 case 5 -> //tbc
                         System.out.println("Option 5");
-                case 6 ->{
+                case 6 -> {
                     System.out.println("Quitting");
                     quit = true;
                 } //tbc
-               default -> System.out.println("Not a valid option");
+                default -> System.out.println("Not a valid option");
             }
         }
     }
 
-    private void menu() {
-        System.out.println("""
-
-                1: option 1
-                2: option 2
-                3: option 3
-                4: option 4
-                5: option 5
-                6: Quit
-
-                """);
+    private Question questionDetails() {
+        // initialises a scanner
+        Scanner sc = new Scanner(System.in);
+        // asks the user for the details of the sale
+        System.out.println("Enter the question: ");
+        String question = sc.nextLine();
+        System.out.println("Enter the correct answer: ");
+        String answer = sc.nextLine();
+        System.out.println("Enter the question type: ");
+        String typeOfQuestion = sc.nextLine();
+        System.out.println("Enter the marks ");
+        int marks = Integer.parseInt(sc.nextLine());
+        System.out.println("Enter the topic:");
+        String topicOfQuestion = sc.nextLine();
+        return new Question(question, topicOfQuestion, typeOfQuestion, answer, marks, false);
     }
-}
+
+        private void menu () {
+            System.out.println("""
+
+                    1: Create a Question.
+                    2: option 2
+                    3: option 3
+                    4: option 4
+                    5: option 5
+                    6: Quit
+
+                    """);
+        }
+    }
+
     /*
 
 
