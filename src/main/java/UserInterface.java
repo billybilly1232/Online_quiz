@@ -29,19 +29,19 @@ public class UserInterface {
                     d.createQuestion(questionDetails());
                 }
                 case 2 -> // update a question
-                        System.out.println("Option 2");
+                        System.out.println("Read/view a question.");
                 case 3 -> // read a question
-                        System.out.println("Option 3");
+                        System.out.println("Update/edit a question.");
                 case 4 -> //delete a question
-                        System.out.println("Option 4");
+                        System.out.println("Delete a question.");
                 case 5 -> //create a quiz
-                        System.out.println("Option 5");
+                        System.out.println("Create a quiz.");
                 case 6 -> //update a quiz
-                        System.out.println("Option 6");
+                        System.out.println("Read/view a quiz.");
                 case 7 -> //view a quiz
-                        System.out.println("Option 7");
+                        System.out.println("Update/edit a quiz.");
                 case 8 -> //delete a quiz
-                        System.out.println("Option 8");
+                        System.out.println("Delete a quiz.");
                 case 9 -> //search by topic
                         System.out.println("Option 9");
                 case 10 -> //search by type
@@ -57,9 +57,9 @@ public class UserInterface {
                 case 15 -> //view statistics
                         System.out.println("Option 15");
                 case 16 -> {
-                    System.out.println("Quitting");
+                    System.out.println("Quitting.");
                     quit = true;
-                } //tbc
+                }
                 default -> System.out.println("Not a valid option");
             }
         }
@@ -75,7 +75,7 @@ public class UserInterface {
         String answer = sc.nextLine();
         System.out.println("Enter the question type: ");
         String typeOfQuestion = sc.nextLine();
-        System.out.println("Enter the marks ");
+        System.out.println("Enter the marks: ");
         int marks = Integer.parseInt(sc.nextLine());
         System.out.println("Enter the topic:");
         String topicOfQuestion = sc.nextLine();
