@@ -3,6 +3,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "QUESTION")
+//@NamedQueries({
+//        @NamedQuery(name = "SearchByType",query = "select * from QUESTION where typeOFQuestion = :name" )
+//})
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
