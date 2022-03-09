@@ -32,26 +32,43 @@ public class UserInterface {
                         System.out.println("Option 4");
                 case 5 -> //tbc
                         System.out.println("Option 5");
-                case 6 ->{
+                case 6 -> {
                     System.out.println("Quitting");
                     quit = true;
                 } //tbc
-               default -> System.out.println("Not a valid option");
+                default -> System.out.println("Not a valid option");
             }
         }
     }
 
-    private void menu() {
-        System.out.println("""
+    private Question questionDetails() {
+        // initialises a scanner
+        Scanner sc = new Scanner(System.in);
+        // asks the user for the details of the sale
+        System.out.println("Enter the question: ");
+        String question = sc.nextLine();
+        System.out.println("Enter the correct answer: ");
+        String answer = sc.nextLine();
+        System.out.println("Enter the question type: ");
+        String typeOfQuestion = sc.nextLine();
+        System.out.println("Enter the marks ");
+        int marks = Integer.parseInt(sc.nextLine());
+        System.out.println("Enter the topic:");
+        String topicOfQuestion = sc.nextLine();
+        return new Question(question, topicOfQuestion, typeOfQuestion, answer, marks, false);
 
-                1: option 1
-                2: option 2
-                3: option 3
-                4: option 4
-                5: option 5
-                6: Quit
+        private void menu () {
+            System.out.println("""
 
-                """);
+                    1: option 1
+                    2: option 2
+                    3: option 3
+                    4: option 4
+                    5: option 5
+                    6: Quit
+
+                    """);
+        }
     }
 }
     /*
