@@ -112,4 +112,18 @@ public class Question {
     public void setQuizzes(Set<Quiz> quizzes) {
         this.quizzes = quizzes;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionID=" + questionID +
+                ", question='" + question + '\'' +
+                ", topicOfQuestion='" + topicOfQuestion + '\'' +
+                ", typeOfQuestion='" + typeOfQuestion + '\'' +
+                ", answer='" + answer + '\'' +
+                ", marks=" + marks +
+                ", incorrectlyAnswered=" + incorrectlyAnswered +
+                ", quizzes=" + quizzes +
+                '}';
+    }
 }
