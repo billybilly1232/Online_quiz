@@ -28,34 +28,76 @@ public class UserInterface {
                     System.out.println("Create a question.");
                     d.createQuestion(questionDetails());
                 }
-                case 2 -> // update a question
-                        System.out.println("Read/view a question.");
-                case 3 -> // read a question
-                        System.out.println("Update/edit a question.");
-                case 4 -> //delete a question
-                        System.out.println("Delete a question.");
-                case 5 -> //create a quiz
-                        System.out.println("Create a quiz.");
-                case 6 -> //update a quiz
-                        System.out.println("Read/view a quiz.");
-                case 7 -> //view a quiz
-                        System.out.println("Update/edit a quiz.");
-                case 8 -> //delete a quiz
-                        System.out.println("Delete a quiz.");
-                case 9 -> //search by topic
-                        System.out.println("Option 9");
-                case 10 -> //search by type
-                        System.out.println("Option 10");
-                case 11 -> //5 question quiz
-                        System.out.println("Option 11");
-                case 12 -> //10 question quiz
-                        System.out.println("Option 12");
-                case 13 -> //15 question quiz
-                        System.out.println("Option 13");
-                case 14 -> //20 question quiz
-                        System.out.println("Option 14");
-                case 15 -> //view statistics
-                        System.out.println("Option 15");
+                case 2 ->{
+                    // update a question
+                    System.out.println("Read/view a question.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 3 ->{
+                    // read a question
+                    System.out.println("Update/edit a question.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 4 -> {
+                    //delete a question
+                    System.out.println("Delete a question.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 5 ->{
+                    //create a quiz
+                    System.out.println("Create a quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 6 ->{
+                    //update a quiz
+                    System.out.println("Read/view a quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 7 ->{
+                    //view a quiz
+                    System.out.println("Update/edit a quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 8 ->{
+                    //delete a quiz
+                    System.out.println("Delete a quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 9 ->{
+                    //search by topic
+                    System.out.println("Search by topic.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 10 -> {
+                    //search by type
+                    System.out.println("Search by type.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 11 ->{
+                    //5 question quiz
+                    System.out.println("5 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 12 ->{
+                    //10 question quiz
+                    System.out.println("10 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 13 ->{
+                    //15 question quiz
+                    System.out.println("15 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 14 ->{
+                    //20 question quiz
+                    System.out.println("20 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 15 ->{
+                    //view statistics
+                    System.out.println("Option 15");
+                    System.out.println("This has not been implemented yet.");
+                }
                 case 16 -> {
                     System.out.println("Quitting.");
                     quit = true;
