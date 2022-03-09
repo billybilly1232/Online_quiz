@@ -24,6 +24,19 @@ public class TestQuery {
     }
 */
     public static void main(String[] args) {
+        Session s = HibernateUtil.getSessionFactory().openSession();
+
+        String hql = "from QUESTION q where q.topicOfQuestion = 'memes'";
+        s.beginTransaction();
+
+        Query query = s.createQuery(hql);
+
+        s.getTransaction().commit();
+        for (Object q: query.getResultList()){
+            Question tmp = (Question) q;
+            System.out.println(tmp.toString());
+        }
+
 
     }
 }
