@@ -23,8 +23,11 @@ public class UserInterface {
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1 ->// option 1
-                        d.createQuestion(questionDetails());
+                case 1 ->{
+                    // option 1
+                    System.out.println("Create a question.");
+                    d.createQuestion(questionDetails());
+                }
                 case 2 -> // tbc
                         System.out.println("Option 2");
                 case 3 -> // tbc
