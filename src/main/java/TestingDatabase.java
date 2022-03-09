@@ -18,7 +18,7 @@ public class TestingDatabase {
             // creates a new instance of the question class
             Question q = new Question();
             // sets the fields of the class to hardcoded data
-            q.setTopicOfQuestion("Maths");
+            q.setTopicOfQuestion("memes");
             //q.setType("SAQ");
             q.setQuestion("9+10?");
             q.setAnswer("21");
