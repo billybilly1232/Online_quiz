@@ -23,20 +23,40 @@ public class UserInterface {
             int choice = sc.nextInt();
 
             switch (choice) {
-                case 1 ->{
-                    // option 1
+                case 1 -> {
+                    // create a question
                     System.out.println("Create a question.");
                     d.createQuestion(questionDetails());
                 }
-                case 2 -> // tbc
+                case 2 -> // update a question
                         System.out.println("Option 2");
-                case 3 -> // tbc
+                case 3 -> // read a question
                         System.out.println("Option 3");
-                case 4 -> //tbc
+                case 4 -> //delete a question
                         System.out.println("Option 4");
-                case 5 -> //tbc
+                case 5 -> //create a quiz
                         System.out.println("Option 5");
-                case 6 -> {
+                case 6 -> //update a quiz
+                        System.out.println("Option 6");
+                case 7 -> //view a quiz
+                        System.out.println("Option 7");
+                case 8 -> //delete a quiz
+                        System.out.println("Option 8");
+                case 9 -> //search by topic
+                        System.out.println("Option 9");
+                case 10 -> //search by type
+                        System.out.println("Option 10");
+                case 11 -> //5 question quiz
+                        System.out.println("Option 11");
+                case 12 -> //10 question quiz
+                        System.out.println("Option 12");
+                case 13 -> //15 question quiz
+                        System.out.println("Option 13");
+                case 14 -> //20 question quiz
+                        System.out.println("Option 14");
+                case 15 -> //view statistics
+                        System.out.println("Option 15");
+                case 16 -> {
                     System.out.println("Quitting");
                     quit = true;
                 } //tbc
@@ -62,39 +82,26 @@ public class UserInterface {
         return new Question(question, topicOfQuestion, typeOfQuestion, answer, marks, false);
     }
 
-        private void menu () {
-            System.out.println("""
+    private void menu() {
+        System.out.println("""
 
-                    1: Create a Question.
-                    2: option 2
-                    3: option 3
-                    4: option 4
-                    5: option 5
-                    6: Quit
+                1: Create a Question.
+                2: Update a Question
+                3: Read a Question
+                4: Delete a Question
+                5: Create a Quiz
+                6: Update a Quiz
+                7: Read a Quiz
+                8: Delete a Quiz
+                9: Search by Topic
+                10: Search by Type
+                11: 5 Question Quiz
+                12: 10 Question Quiz
+                13: 15 Question Quiz
+                14: 20 Question Quiz
+                15: View Statistics
+                16: Quit
 
-                    """);
-        }
-    }
-
-    /*
-
-
-
-
-        // the following is the user menu
-         * Displays the menu to the user, so they know what each numerical option does.
-        private void menu () {
-            System.out.println("""
-
-                    1: Add branch
-                    2: Add sale
-                    3: View the branch with the largest average sale of a given year
-                    4: View the largest sale ever recorded
-                    5: View all sales greater than a specified value
-                    6: Quit
-
-                    """);
-        }
+                """);
     }
 }
-     */
