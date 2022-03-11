@@ -3,14 +3,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 public class TestingDatabase {
+    /*
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         try{
-            /*
+
             test for setting a question to the db with hardcoded data.
             It did work
-             */
+
             // creates a new session with the database
             session = HibernateUtil.getSessionFactory().openSession();
             // begins the transaction
@@ -39,4 +40,14 @@ public class TestingDatabase {
             // closes the session
         }
     }
+     */
+    public static void main(String[] args) {
+        Database d = new Database();
+        //d.createQuestion(new Question("What is the CPU?","Architecture","SAQ","Central Proccessing Unit", 10, false));
+        System.out.println(d.readQuestion(8).toString());
+        d.updateQuestion(8, "Type", "MCQ");
+        System.out.println(d.readQuestion(8).toString());
+        d.deleteQuestion(5);
+    }
+
 }

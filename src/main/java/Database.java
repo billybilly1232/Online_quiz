@@ -57,24 +57,12 @@ delete questions
             Question q = (s.get(Question.class, questionID));
 
             switch (detailType){
-                case "Topic":{
-                    q.setTopicOfQuestion(updateString);
-                }
-                case "Type":{
-                    q.setTypeOfQuestion(updateString);
-                }
-                case "Question":{
-                    q.setQuestion(updateString);
-                }
-                case "Answer":{
-                    q.setAnswer(updateString);
-                }
-                case "Marks":{
-                    q.setMarks(Integer.parseInt(updateString));
-                }
-                case "IncorrectlyAnswered":{
-                    q.setIncorrectlyAnswered(Boolean.parseBoolean(updateString));
-                }
+                case "Topic"-> q.setTopicOfQuestion(updateString);
+                case "Type"-> q.setTypeOfQuestion(updateString);
+                case "Question"-> q.setQuestion(updateString);
+                case "Answer"-> q.setAnswer(updateString);
+                case "Marks"-> q.setMarks(Integer.parseInt(updateString));
+                case "IncorrectlyAnswered"-> q.setIncorrectlyAnswered(Boolean.parseBoolean(updateString));
             }
             s.update(q);
             s.getTransaction().commit();
