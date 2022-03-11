@@ -1,8 +1,6 @@
-package relationships.manytomany;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import utility.HibernateUtil;
+import csc1035.project2.HibernateUtil;
 
 import java.util.*;
 
@@ -11,35 +9,26 @@ public class TestingManyToMany {
     public static void main(String[] args) {
         Session session = null;
 
-        // create quiz
+        Question q1 = new Question("Why Square?","Existensial Questions","SAQ","Maths",21,false);
+        Question q2 = new Question("Commit hard? \n 1. Yes \n 2. No","Git","MCQ","1",69,false);
+        Set<Question> questions = new HashSet<>(Arrays.asList(q1,q2));
+        Quiz quiz1 = new Quiz("Life",2);
+        Set<Quiz> quizzes = new HashSet<>(Arrays.asList(quiz1));
 
 
-       // Set<Quiz> sl = new HashSet<>(Arrays.asList();
 
-        //create questions
-
-
-
-        //Set<Question> ml = new HashSet<>(Arrays.asList());
-
-        // Create
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-
-            // save objects to database
-            for (Question question : question1) {
+            for (Question question : questions){
                 session.persist(question);
             }
-            for (Quiz quiz : quiz1) {
+            for (Quiz quiz : quizzes){
                 session.persist(quiz);
             }
-
-            // create relationship in student and save again
-            // modules did not exist when first saved
-            for (Question question : q1) {
-                stu.setModules(quiz1);
-                session.persist(question1);
+            for (Question question : questions){
+                question.setQuizzes(quizzes);
+                session.persist(question);
             }
 
             session.getTransaction().commit();
@@ -48,7 +37,10 @@ public class TestingManyToMany {
             if (session != null) session.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+            if (session != null) {
+                session.close();
+            }
         }
     }
+
 }

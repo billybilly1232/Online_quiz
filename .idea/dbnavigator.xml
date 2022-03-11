@@ -27,15 +27,15 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="2147628d-e74d-4b89-b249-4395d4c9b256">
-      <console name="Eden's DB" type="STANDARD" schema="" session="Main" />
+    <connection id="ca59f916-7096-4954-baa3-364b5bd74142">
+      <console name="Team DB" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="2147628d-e74d-4b89-b249-4395d4c9b256" />
+    <connection id="ca59f916-7096-4954-baa3-364b5bd74142" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -66,9 +66,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="2147628d-e74d-4b89-b249-4395d4c9b256" active="true" signed="false">
+      <connection id="ca59f916-7096-4954-baa3-364b5bd74142" active="true" signed="false">
         <database>
-          <name value="Eden's DB" />
+          <name value="Team DB" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
@@ -79,10 +79,10 @@
           <url-type value="DATABASE" />
           <host value="cs-db.ncl.ac.uk" />
           <port value="3306" />
-          <database value="c1016129" />
+          <database value="csc1035_team33" />
           <type value="USER_PASSWORD" />
-          <user value="c1016129" />
-          <deprecated-pwd value="R3VtczJQb2RbVG9v" />
+          <user value="csc1035_team33" />
+          <deprecated-pwd value="TGlja1NoeTtIb290" />
         </database>
         <properties>
           <auto-commit value="false" />
