@@ -95,6 +95,25 @@ delete questions
         }
     }
 
+    public List readAllQuestions(){
+        Session s = null;
+        try{
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Query readAll = s.createQuery("from QUESTION");
+            s.getTransaction().commit();
+            return readAll.getResultList();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+        return null;
+    }
+
     public void createQuiz() {
         // method for creating a quiz
     }

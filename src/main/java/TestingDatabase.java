@@ -44,10 +44,11 @@ public class TestingDatabase {
     public static void main(String[] args) {
         Database d = new Database();
         //d.createQuestion(new Question("What is the CPU?","Architecture","SAQ","Central Proccessing Unit", 10, false));
-        System.out.println(d.readQuestion(8).toString());
-        d.updateQuestion(8, "Type", "MCQ");
-        System.out.println(d.readQuestion(8).toString());
-        d.deleteQuestion(5);
+        //System.out.println(d.readQuestion(8).toString());
+        //d.updateQuestion(8, "Type", "MCQ");
+        //System.out.println(d.readQuestion(8).toString());
+        //d.deleteQuestion(5);
+        System.out.println(d.readAllQuestions());
     }
 
 }
