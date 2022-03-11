@@ -95,7 +95,7 @@ public class UserInterface {
                 }
                 case 15 ->{
                     //view statistics
-                    System.out.println("Option 15");
+                    System.out.println("View statistics.");
                     System.out.println("This has not been implemented yet.");
                 }
                 case 16 -> {
