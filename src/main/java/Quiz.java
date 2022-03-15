@@ -11,6 +11,9 @@ public class Quiz {
     private int quizID;
 
     @Column
+    private String quizName;
+
+    @Column
     private String topicOfQuiz;
 
     @Column
@@ -27,7 +30,8 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(String topicOfQuiz, int lengthOfQuiz) {
+    public Quiz(String name, String topicOfQuiz, int lengthOfQuiz) {
+        this.quizName = name;
         this.topicOfQuiz = topicOfQuiz;
         this.lengthOfQuiz = lengthOfQuiz;
     }
@@ -66,6 +70,14 @@ public class Quiz {
 
     public List<Log> getLogs() {
         return logs;
+    }
+
+    public String getQuizName() {
+        return quizName;
+    }
+
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
     }
 
     public void setLogs(List<Log> logs) {
