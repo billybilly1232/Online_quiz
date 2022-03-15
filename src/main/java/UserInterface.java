@@ -1,4 +1,3 @@
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.Scanner;
 public class UserInterface {
     public static void main(String[] args) {
@@ -40,14 +39,16 @@ public class UserInterface {
                     int editedQuestion;
                     System.out.println("Which question would you like to edit? ");
                     // print out questions
+                    d.readAllQuestions();
+                    int questionID = inputQuestion();
                     editedQuestion = Integer.parseInt(sc.nextLine());
                     System.out.println("""
                             What would you like to update:
-                            1. The Question itself
-                            2. The Answer.
-                            3. The Type of question
-                            4. The Topic of the question
-                            5. How many marks the question is worth.""");
+                            1. The question itself
+                            2. The answer
+                            3. The type of question
+                            4. The topic of the question
+                            5. How many marks the question is worth""");
                     int choiceUpdateQuestion = sc.nextInt();
                     switch (choiceUpdateQuestion) {
                             case 1 -> {
@@ -86,7 +87,6 @@ public class UserInterface {
                             d.updateQuestion(editedQuestion, "Marks", String.valueOf(updatedMarks));
                         }
                     }
-
                 }
                 case 4 -> {
                     //delete a question
@@ -172,6 +172,11 @@ public class UserInterface {
         System.out.println("Enter the topic:");
         String topicOfQuestion = sc.nextLine();
         return new Question(question, topicOfQuestion, typeOfQuestion, answer, marks, false);
+    }
+
+    private int inputQuestion(){
+        // List <Question> listOfQuestions = d.readAllQuestion();
+
     }
 
     private void menu() {
