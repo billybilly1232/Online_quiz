@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 public class UserInterface {
     public static void main(String[] args) {
@@ -13,8 +14,6 @@ public class UserInterface {
 
         // while the value of quit is false
         while (!quit) {
-            // creates a scanner for the input
-            Scanner input = new Scanner(System.in);
             // runs the menu
             menu();
             // prompts the user to select an option
@@ -31,61 +30,69 @@ public class UserInterface {
                 case 2 ->{
                     // read a question
                     System.out.println("Read/view a question.");
-                    System.out.println("This has not been implemented yet.");
+                    int questionID = inputQuestion();
+                    if (questionID != -1){
+                        System.out.println(d.readQuestion(questionID).toString());
+                    }
+                    else{
+                        System.out.println("An Error occurred. ");
+                    }
                 }
                 case 3 ->{
                     // update a question
                     System.out.println("Update/edit a question.");
-                    int editedQuestion;
                     System.out.println("Which question would you like to edit? ");
-                    // print out questions
-                    d.readAllQuestions();
-                    int questionID = inputQuestion();
-                    editedQuestion = Integer.parseInt(sc.nextLine());
-                    System.out.println("""
-                            What would you like to update:
-                            1. The question itself
-                            2. The answer
-                            3. The type of question
-                            4. The topic of the question
-                            5. How many marks the question is worth""");
-                    int choiceUpdateQuestion = sc.nextInt();
-                    switch (choiceUpdateQuestion) {
+                    // print out question
+                    int editedQuestion = inputQuestion();
+                    if (editedQuestion != -1) {
+                        System.out.println("""
+                                What would you like to update:
+                                1. The question itself
+                                2. The answer
+                                3. The type of question
+                                4. The topic of the question
+                                5. How many marks the question is worth""");
+                        int choiceUpdateQuestion = sc.nextInt();
+                        switch (choiceUpdateQuestion) {
                             case 1 -> {
                                 System.out.println("Update the question itself.");
                                 String updatedQuestion;
                                 System.out.println("Please enter the new question: ");
                                 updatedQuestion = sc.nextLine();
-                                d.updateQuestion(editedQuestion,"Question", updatedQuestion);
+                                d.updateQuestion(editedQuestion, "Question", updatedQuestion);
                             }
-                            case 2 ->{
+                            case 2 -> {
                                 System.out.println("Update the answer.");
                                 String updatedAnswer;
                                 System.out.println("Please enter the new answer: ");
                                 updatedAnswer = sc.nextLine();
                                 d.updateQuestion(editedQuestion, "Answer", updatedAnswer);
                             }
-                        case 3 ->{
-                            System.out.println("Update the type of the question.");
-                            String updatedType;
-                            System.out.println("Please enter the new type: ");
-                            updatedType = sc.nextLine();
-                            d.updateQuestion(editedQuestion, "Type", updatedType);
+                            case 3 -> {
+                                System.out.println("Update the type of the question.");
+                                String updatedType;
+                                System.out.println("Please enter the new type: ");
+                                updatedType = sc.nextLine();
+                                d.updateQuestion(editedQuestion, "Type", updatedType);
+                            }
+                            case 4 -> {
+                                System.out.println("Update the topic of the question");
+                                String updatedTopic;
+                                System.out.println("Please enter the new topic: ");
+                                updatedTopic = sc.nextLine();
+                                d.updateQuestion(editedQuestion, "Topic", updatedTopic);
+                            }
+                            case 5 -> {
+                                System.out.println("Update how many marks the question is worth.");
+                                int updatedMarks;
+                                System.out.println("Please enter the new mark amount: ");
+                                updatedMarks = Integer.parseInt(sc.nextLine());
+                                d.updateQuestion(editedQuestion, "Marks", String.valueOf(updatedMarks));
+                            }
                         }
-                        case 4 ->{
-                            System.out.println("Update the topic of the question");
-                            String updatedTopic;
-                            System.out.println("Please enter the new topic: ");
-                            updatedTopic = sc.nextLine();
-                            d.updateQuestion( editedQuestion, "Topic",  updatedTopic);
-                        }
-                        case 5 ->{
-                            System.out.println("Update how many marks the question is worth.");
-                            int updatedMarks;
-                            System.out.println("Please enter the new mark amount: ");
-                            updatedMarks = Integer.parseInt(sc.nextLine());
-                            d.updateQuestion(editedQuestion, "Marks", String.valueOf(updatedMarks));
-                        }
+                    }
+                    else{
+                        System.out.println("An error occurred. ");
                     }
                 }
                 case 4 -> {
@@ -175,8 +182,18 @@ public class UserInterface {
     }
 
     private int inputQuestion(){
-        // List <Question> listOfQuestions = d.readAllQuestion();
-
+        Database d = new Database();
+        Scanner sc = new Scanner(System.in);
+        int userChoice;
+        List<Question> listOfQuestions = d.readAllQuestions();
+        if (listOfQuestions != null){
+            for (int i = 0; i < listOfQuestions.size(); i++ ){
+                System.out.println((i+1) +  listOfQuestions.get(i).getQuestion());
+            }
+            userChoice = Integer.parseInt(sc.nextLine());
+            return listOfQuestions.get(userChoice -1).getQuestionID();
+        }
+        return -1;
     }
 
     private void menu() {
