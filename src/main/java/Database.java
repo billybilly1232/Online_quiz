@@ -114,27 +114,162 @@ delete questions
         return null;
     }
 
-    public void createQuiz() {
+    public void createQuiz(Quiz addQuiz) {
         // method for creating a quiz
+        Session s = null;
+        try {
+            // creates a new session with the database
+            s = HibernateUtil.getSessionFactory().openSession();
+            // begins the transaction
+            s.beginTransaction();
+            s.save(addQuiz);
+            // saves the transaction
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            // if something goes wrong, rollback to the previous transaction
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+                // closes the session
+            }
+        }
     }
 
-    public void readQuiz() {
+    public Quiz readQuiz(int quizID) {
         // method for reading/viewing a quiz
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query quizQuery = s.createQuery("from QUIZ q where q.quizID = :quiz");
+        quizQuery.setParameter("quiz", quizID);
+        s.getTransaction().commit();
+        Quiz quiz = (Quiz) quizQuery.getResultList().get(0);
+        s.close();
+        return quiz;
+
     }
 
-    public void updateQuiz() {
-        // method for updating/editing a quiz
+    public void updateQuiz(int quizID,String detailType, String updateString) {
+        // method for updating/editing a question
+        Session s = null;
+        try {
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Quiz q = (s.get(Quiz.class, quizID));
+
+            switch (detailType) {
+                case "Topic" -> q.setTopicOfQuiz(updateString);
+                case "Length" -> q.setLengthOfQuiz(Integer.parseInt(updateString));
+            }
+            s.update(q);
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
     }
 
-    public void deleteQuiz(){
+    public void deleteQuiz(int quizID){
         // method for deleting a quiz
+        Session s = null;
+        try {
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Quiz q = s.get(Quiz.class, quizID);
+            s.delete(q);
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
     }
 
-    public void createLog(){
+    public List readAllQuizzes(){
+        Session s = null;
+        try{
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Query readAll = s.createQuery("from QUIZ");
+            s.getTransaction().commit();
+            return readAll.getResultList();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+        return null;
+    }
+
+    public void createLog(Log addLog){
         // method for creating a log
+        Session s = null;
+        try {
+            // creates a new session with the database
+            s = HibernateUtil.getSessionFactory().openSession();
+            // begins the transaction
+            s.beginTransaction();
+            s.save(addLog);
+            // saves the transaction
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            // if something goes wrong, rollback to the previous transaction
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+                // closes the session
+            }
+        }
     }
 
-    public void deleteLog(){
+    public void deleteLog(int logID){
         // method for deleting a log
+        Session s = null;
+        try {
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Log l = s.get(Log.class, logID);
+            s.delete(l);
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+    }
+
+    public List readAllLogs(){
+        Session s = null;
+        try{
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Query readAll = s.createQuery("from LOG");
+            s.getTransaction().commit();
+            return readAll.getResultList();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+        return null;
     }
 }
