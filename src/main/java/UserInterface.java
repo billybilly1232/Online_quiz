@@ -1,3 +1,4 @@
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.Scanner;
 public class UserInterface {
     public static void main(String[] args) {
@@ -29,14 +30,63 @@ public class UserInterface {
                     d.createQuestion(questionDetails());
                 }
                 case 2 ->{
-                    // update a question
+                    // read a question
                     System.out.println("Read/view a question.");
                     System.out.println("This has not been implemented yet.");
                 }
                 case 3 ->{
-                    // read a question
+                    // update a question
                     System.out.println("Update/edit a question.");
-                    System.out.println("This has not been implemented yet.");
+                    int editedQuestion;
+                    System.out.println("Which question would you like to edit? ");
+                    // print out questions
+                    editedQuestion = Integer.parseInt(sc.nextLine());
+                    System.out.println("""
+                            What would you like to update:
+                            1. The Question itself
+                            2. The Answer.
+                            3. The Type of question
+                            4. The Topic of the question
+                            5. How many marks the question is worth.""");
+                    int choiceUpdateQuestion = sc.nextInt();
+                    switch (choiceUpdateQuestion) {
+                            case 1 -> {
+                                System.out.println("Update the question itself.");
+                                String updatedQuestion;
+                                System.out.println("Please enter the new question: ");
+                                updatedQuestion = sc.nextLine();
+                                d.updateQuestion(editedQuestion,"Question", updatedQuestion);
+                            }
+                            case 2 ->{
+                                System.out.println("Update the answer.");
+                                String updatedAnswer;
+                                System.out.println("Please enter the new answer: ");
+                                updatedAnswer = sc.nextLine();
+                                d.updateQuestion(editedQuestion, "Answer", updatedAnswer);
+                            }
+                        case 3 ->{
+                            System.out.println("Update the type of the question.");
+                            String updatedType;
+                            System.out.println("Please enter the new type: ");
+                            updatedType = sc.nextLine();
+                            d.updateQuestion(editedQuestion, "Type", updatedType);
+                        }
+                        case 4 ->{
+                            System.out.println("Update the topic of the question");
+                            String updatedTopic;
+                            System.out.println("Please enter the new topic: ");
+                            updatedTopic = sc.nextLine();
+                            d.updateQuestion( editedQuestion, "Topic",  updatedTopic);
+                        }
+                        case 5 ->{
+                            System.out.println("Update how many marks the question is worth.");
+                            int updatedMarks;
+                            System.out.println("Please enter the new mark amount: ");
+                            updatedMarks = Integer.parseInt(sc.nextLine());
+                            d.updateQuestion(editedQuestion, "Marks", String.valueOf(updatedMarks));
+                        }
+                    }
+
                 }
                 case 4 -> {
                     //delete a question
