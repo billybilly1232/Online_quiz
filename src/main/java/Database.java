@@ -161,6 +161,7 @@ delete questions
             switch (detailType) {
                 case "Topic" -> q.setTopicOfQuiz(updateString);
                 case "Length" -> q.setLengthOfQuiz(Integer.parseInt(updateString));
+                case "Name" -> q.setQuizName(updateString);
             }
             s.update(q);
             s.getTransaction().commit();
