@@ -100,6 +100,22 @@ public class UserInterface {
                     //delete a question
                     System.out.println("Delete a question.");
                     System.out.println("This has not been implemented yet.");
+                    int deletedQuestion = inputQuestion();
+                    if (deletedQuestion != -1) {
+                        System.out.println("You have selected: " + deletedQuestion);
+                        String confirmation;
+                        System.out.println("Would you like to delete it? ");
+                        confirmation = sc.nextLine();
+                        if (confirmation.equals("y") || confirmation.equals("Y")){
+                            d.deleteQuestion(deletedQuestion);
+                        }
+                        else{
+                            System.out.println("Deletion cancelled.");
+                        }
+                    }
+                    else{
+                        System.out.println("An error occurred. ");
+                    }
                 }
                 case 5 ->{
                     //create a quiz
