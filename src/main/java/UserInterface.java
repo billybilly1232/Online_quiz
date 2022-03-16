@@ -99,17 +99,43 @@ public class UserInterface {
                     //create a quiz
                     System.out.println("Create a quiz.");
                     d.createQuiz(quizDetails());
-                    System.out.println("This has not been implemented yet.");
                 }
                 case 6 ->{
                     //read a quiz
                     System.out.println("Read/view a quiz.");
-                    System.out.println("This has not been implemented yet.");
+                    int quizID = inputQuiz();
+                    if (quizID != -1){
+                        System.out.println(d.readQuestion(quizID).toString());
+                    }
+                    else{
+                        System.out.println("An Error occurred. ");
+                    }
                 }
                 case 7 ->{
                     //update a quiz
                     System.out.println("Update/edit a quiz.");
                     System.out.println("This has not been implemented yet.");
+                    System.out.println("Which question would you like to edit? ");
+                    // print out question
+                    int editedQuiz = inputQuiz();
+                    if (editedQuiz != -1) {
+                        updateMenuQuiz();
+                        int choiceUpdateQuestion = sc.nextInt();
+                        switch (choiceUpdateQuestion) {
+                            case 1 -> {
+                                String updatedQuiz = updateQuiz("Update the question itself.", "Please enter the new question: ");
+                                d.updateQuiz(editedQuiz, "Quiz", updatedQuiz);
+                            }
+                            case 2 -> {
+                                String updatedQuiz = updateQuiz("Update the length of the quiz.", "Please enter the new answer: ");
+                                d.updateQuiz(editedQuiz, "Length", updatedQuiz);
+                            }
+                            case 3 -> {
+                                String updatedQuiz = updateQuiz("Update the topic of the quiz.", "Please enter the new type: ");
+                                d.updateQuiz(editedQuiz, "Topic", updatedQuiz);
+                            }
+                        }
+                    }
                 }
                 case 8 ->{
                     //delete a quiz
@@ -211,21 +237,21 @@ public class UserInterface {
                 14: 20 Question Quiz
                 15: View Statistics
                 16: Quit
-
+                
                 """);
     }
 
     private void updateMenu(){
-        System.out.println("""
-                                
-                                What would you like to update:
-                                1. The question itself
-                                2. The answer
-                                3. The type of question
-                                4. The topic of the question
-                                5. How many marks the question is worth
-                                
-                                """);
+        System.out.println("""   
+                             
+                What would you like to update:
+                1. The question itself
+                2. The answer
+                3. The type of question
+                4. The topic of the question
+                5. How many marks the question is worth
+                
+                """);
     }
 
     public String updateQuestion(String message, String prompt){
@@ -237,7 +263,7 @@ public class UserInterface {
     }
 
     private Quiz quizDetails(){
-        // need to
+        // need to figure out how to actually get the questions linked to the quiz.
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the name of the quiz: ");
         String quizName = sc.nextLine();
@@ -247,4 +273,39 @@ public class UserInterface {
         int lengthOfQuiz = Integer.parseInt(sc.nextLine());
         return new Quiz(quizName, topicOfQuiz, lengthOfQuiz);
     }
+
+    private int inputQuiz(){
+        Database d = new Database();
+        Scanner sc = new Scanner(System.in);
+        int userChoice;
+        List<Quiz> listOfQuizzes = d.readAllQuizzes();
+        if (listOfQuizzes != null){
+            for (int i = 0; i < listOfQuizzes.size(); i++ ){
+                System.out.println((i+1) +  ": " +  listOfQuizzes.get(i).getQuizName());
+            }
+            userChoice = Integer.parseInt(sc.nextLine());
+            return listOfQuizzes.get(userChoice -1).getQuizID();
+        }
+        return -1;
+    }
+
+    private void updateMenuQuiz(){
+        System.out.println("""                
+                
+                What would you like to update:
+                1. The quiz name
+                2. The length of the quiz
+                3. The topic of the quiz
+
+                """);
+    }
+
+    public String updateQuiz(String message, String prompt){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(message);
+        System.out.println(prompt);
+        String updatedQuiz = sc.nextLine();
+        return updatedQuiz;
+    }
+
 }
