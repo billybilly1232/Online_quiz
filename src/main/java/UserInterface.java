@@ -237,7 +237,14 @@ public class UserInterface {
     }
 
     private Quiz quizDetails(){
-        //Need to do this. But I am leaving the lab
-        return null;
+        // need to
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the name of the quiz: ");
+        String quizName = sc.nextLine();
+        System.out.println("Please enter the topic of the quiz: ");
+        String topicOfQuiz = sc.nextLine();
+        System.out.println("Please enter the length of the quiz: ");
+        int lengthOfQuiz = Integer.parseInt(sc.nextLine());
+        return new Quiz(quizName, topicOfQuiz, lengthOfQuiz);
     }
 }
