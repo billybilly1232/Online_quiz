@@ -140,7 +140,19 @@ public class UserInterface {
                 case 8 ->{
                     //delete a quiz
                     System.out.println("Delete a quiz.");
-                    System.out.println("This has not been implemented yet.");
+                    int deletedQuiz = inputQuiz();
+                    if (deletedQuiz != -1) {
+                        Scanner scanner = new Scanner(System.in);
+                        String confirmation;
+                        System.out.println("Would you like to delete it? ");
+                        confirmation = scanner.nextLine();
+                        if (confirmation.equals("y") || confirmation.equals("Y")) {
+                            System.out.println("Quiz will now be deleted.");
+                            d.deleteQuiz(deletedQuiz);
+                        } else {
+                            System.out.println("Deletion cancelled.");
+                        }
+                    }
                 }
                 case 9 ->{
                     //search by topic
