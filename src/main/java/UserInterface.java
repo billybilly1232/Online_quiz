@@ -79,11 +79,12 @@ public class UserInterface {
                     System.out.println("Delete a question.");
                     int deletedQuestion = inputQuestion();
                     if (deletedQuestion != -1) {
-                        System.out.println("You have selected: " + deletedQuestion);
+                        Scanner scanner = new Scanner(System.in);
                         String confirmation;
                         System.out.println("Would you like to delete it? ");
-                        confirmation = sc.nextLine();
+                        confirmation = scanner.nextLine();
                         if (confirmation.equals("y") || confirmation.equals("Y")){
+                            System.out.println("Question will now be deleted.");
                             d.deleteQuestion(deletedQuestion);
                         }
                         else{
@@ -97,15 +98,16 @@ public class UserInterface {
                 case 5 ->{
                     //create a quiz
                     System.out.println("Create a quiz.");
+                    d.createQuiz(quizDetails());
                     System.out.println("This has not been implemented yet.");
                 }
                 case 6 ->{
-                    //update a quiz
+                    //read a quiz
                     System.out.println("Read/view a quiz.");
                     System.out.println("This has not been implemented yet.");
                 }
                 case 7 ->{
-                    //view a quiz
+                    //update a quiz
                     System.out.println("Update/edit a quiz.");
                     System.out.println("This has not been implemented yet.");
                 }
@@ -182,7 +184,7 @@ public class UserInterface {
         List<Question> listOfQuestions = d.readAllQuestions();
         if (listOfQuestions != null){
             for (int i = 0; i < listOfQuestions.size(); i++ ){
-                System.out.println((i+1) +  listOfQuestions.get(i).getQuestion());
+                System.out.println((i+1) +  ": " +  listOfQuestions.get(i).getQuestion());
             }
             userChoice = Integer.parseInt(sc.nextLine());
             return listOfQuestions.get(userChoice -1).getQuestionID();
@@ -198,8 +200,8 @@ public class UserInterface {
                 3: Update a Question
                 4: Delete a Question
                 5: Create a Quiz
-                6: Update a Quiz
-                7: Read a Quiz
+                6: Read a Quiz
+                7: Update a Quiz
                 8: Delete a Quiz
                 9: Search by Topic
                 10: Search by Type
@@ -215,12 +217,15 @@ public class UserInterface {
 
     private void updateMenu(){
         System.out.println("""
+                                
                                 What would you like to update:
                                 1. The question itself
                                 2. The answer
                                 3. The type of question
                                 4. The topic of the question
-                                5. How many marks the question is worth""");
+                                5. How many marks the question is worth
+                                
+                                """);
     }
 
     public String updateQuestion(String message, String prompt){
@@ -229,5 +234,10 @@ public class UserInterface {
         System.out.println(prompt);
         String updatedQuestion = sc.nextLine();
         return updatedQuestion;
+    }
+
+    private Quiz quizDetails(){
+        //Need to do this. But I am leaving the lab
+        return null;
     }
 }
