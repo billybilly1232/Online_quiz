@@ -39,56 +39,34 @@ public class UserInterface {
                     }
                 }
                 case 3 ->{
-                    // comment this later
                     // update a question
                     System.out.println("Update/edit a question.");
                     System.out.println("Which question would you like to edit? ");
                     // print out question
                     int editedQuestion = inputQuestion();
                     if (editedQuestion != -1) {
-                        System.out.println("""
-                                What would you like to update:
-                                1. The question itself
-                                2. The answer
-                                3. The type of question
-                                4. The topic of the question
-                                5. How many marks the question is worth""");
+                      updateMenu();
                         int choiceUpdateQuestion = sc.nextInt();
                         switch (choiceUpdateQuestion) {
                             case 1 -> {
-                                System.out.println("Update the question itself.");
-                                String updatedQuestion;
-                                System.out.println("Please enter the new question: ");
-                                updatedQuestion = sc.nextLine();
+                                String updatedQuestion = updateQuestion("Update the question itself.", "Please enter the new question: ");
                                 d.updateQuestion(editedQuestion, "Question", updatedQuestion);
                             }
                             case 2 -> {
-                                System.out.println("Update the answer.");
-                                String updatedAnswer;
-                                System.out.println("Please enter the new answer: ");
-                                updatedAnswer = sc.nextLine();
-                                d.updateQuestion(editedQuestion, "Answer", updatedAnswer);
+                                String updatedQuestion = updateQuestion("Update the answer.", "Please enter the new answer: ");
+                                d.updateQuestion(editedQuestion, "Answer", updatedQuestion);
                             }
                             case 3 -> {
-                                System.out.println("Update the type of the question.");
-                                String updatedType;
-                                System.out.println("Please enter the new type: ");
-                                updatedType = sc.nextLine();
-                                d.updateQuestion(editedQuestion, "Type", updatedType);
+                                String updatedQuestion = updateQuestion("Update the type.", "Please enter the new type: ");
+                                d.updateQuestion(editedQuestion, "Type", updatedQuestion);
                             }
                             case 4 -> {
-                                System.out.println("Update the topic of the question");
-                                String updatedTopic;
-                                System.out.println("Please enter the new topic: ");
-                                updatedTopic = sc.nextLine();
-                                d.updateQuestion(editedQuestion, "Topic", updatedTopic);
+                                String updatedQuestion = updateQuestion("Update the topic. ", "Please enter the new topic: ");
+                                d.updateQuestion(editedQuestion, "Topic", updatedQuestion);
                             }
                             case 5 -> {
-                                System.out.println("Update how many marks the question is worth.");
-                                int updatedMarks;
-                                System.out.println("Please enter the new mark amount: ");
-                                updatedMarks = Integer.parseInt(sc.nextLine());
-                                d.updateQuestion(editedQuestion, "Marks", String.valueOf(updatedMarks));
+                                String updatedQuestion = updateQuestion("Update how many marks the question is worth.", "Please enter the new mark amount:");
+                                d.updateQuestion(editedQuestion, "Marks", updatedQuestion);
                             }
                         }
                     }
@@ -99,7 +77,6 @@ public class UserInterface {
                 case 4 -> {
                     //delete a question
                     System.out.println("Delete a question.");
-                    System.out.println("This has not been implemented yet.");
                     int deletedQuestion = inputQuestion();
                     if (deletedQuestion != -1) {
                         System.out.println("You have selected: " + deletedQuestion);
@@ -217,8 +194,8 @@ public class UserInterface {
         System.out.println("""
 
                 1: Create a Question.
-                2: Update a Question
-                3: Read a Question
+                2: Read a Question
+                3: Update a Question
                 4: Delete a Question
                 5: Create a Quiz
                 6: Update a Quiz
@@ -234,5 +211,23 @@ public class UserInterface {
                 16: Quit
 
                 """);
+    }
+
+    private void updateMenu(){
+        System.out.println("""
+                                What would you like to update:
+                                1. The question itself
+                                2. The answer
+                                3. The type of question
+                                4. The topic of the question
+                                5. How many marks the question is worth""");
+    }
+
+    public String updateQuestion(String message, String prompt){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(message);
+        System.out.println(prompt);
+        String updatedQuestion = sc.nextLine();
+        return updatedQuestion;
     }
 }
