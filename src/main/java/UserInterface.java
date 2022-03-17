@@ -330,10 +330,16 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println(message);
         System.out.println(prompt);
-        String updated = sc.nextLine();
-        return updated;
+        return sc.nextLine();
     }
 
+    /**
+     * my method to delete what the user has selected
+     *
+     * @param message - displays what the user has selected to change
+     *  @param prompt - prompts the user to input what they want to change
+     * @return a boolean value of true or false
+     */
     public Boolean delete(String message, String prompt){
         Scanner sc = new Scanner(System.in);
         System.out.println(message);
