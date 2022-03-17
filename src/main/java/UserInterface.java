@@ -1,10 +1,26 @@
 import java.util.List;
 import java.util.Scanner;
+
+/**
+ * <p> This is my user interface class</p>
+ *
+ * <p> It allows the user to pick what they would like to do.
+ *        It also has methods that are called that take the question and quiz data, as well as
+ *        the methods to update values, and to create a new instance of  a class, along with
+ *        the user menu.</p>
+ *
+ * @author Eden Mason
+ */
 public class UserInterface {
     public static void main(String[] args) {
         new UserInterface().run();
     }
 
+    /**
+     * sets up my run method.
+     *
+     * GOT UP TO HERE IN JAVADOCING
+     */
     public void run() {
         Database d = new Database();
         boolean quit = false;
@@ -45,27 +61,27 @@ public class UserInterface {
                     // print out question
                     int editedQuestion = inputQuestion();
                     if (editedQuestion != -1) {
-                      updateMenu();
+                      updateMenuQuestion();
                         int choiceUpdateQuestion = sc.nextInt();
                         switch (choiceUpdateQuestion) {
                             case 1 -> {
-                                String updatedQuestion = updateQuestion("Update the question itself.", "Please enter the new question: ");
+                                String updatedQuestion = update("Update the question itself.", "Please enter the new question: ");
                                 d.updateQuestion(editedQuestion, "Question", updatedQuestion);
                             }
                             case 2 -> {
-                                String updatedQuestion = updateQuestion("Update the answer.", "Please enter the new answer: ");
+                                String updatedQuestion = update("Update the answer.", "Please enter the new answer: ");
                                 d.updateQuestion(editedQuestion, "Answer", updatedQuestion);
                             }
                             case 3 -> {
-                                String updatedQuestion = updateQuestion("Update the type.", "Please enter the new type: ");
+                                String updatedQuestion = update("Update the type.", "Please enter the new type: ");
                                 d.updateQuestion(editedQuestion, "Type", updatedQuestion);
                             }
                             case 4 -> {
-                                String updatedQuestion = updateQuestion("Update the topic. ", "Please enter the new topic: ");
+                                String updatedQuestion = update("Update the topic. ", "Please enter the new topic: ");
                                 d.updateQuestion(editedQuestion, "Topic", updatedQuestion);
                             }
                             case 5 -> {
-                                String updatedQuestion = updateQuestion("Update how many marks the question is worth.", "Please enter the new mark amount:");
+                                String updatedQuestion = update("Update how many marks the question is worth.", "Please enter the new mark amount:");
                                 d.updateQuestion(editedQuestion, "Marks", updatedQuestion);
                             }
                         }
@@ -114,7 +130,6 @@ public class UserInterface {
                 case 7 ->{
                     //update a quiz
                     System.out.println("Update/edit a quiz.");
-                    System.out.println("This has not been implemented yet.");
                     System.out.println("Which question would you like to edit? ");
                     // print out question
                     int editedQuiz = inputQuiz();
@@ -123,15 +138,15 @@ public class UserInterface {
                         int choiceUpdateQuestion = sc.nextInt();
                         switch (choiceUpdateQuestion) {
                             case 1 -> {
-                                String updatedQuiz = updateQuiz("Update the question itself.", "Please enter the new question: ");
+                                String updatedQuiz = update("Update the question itself.", "Please enter the new question: ");
                                 d.updateQuiz(editedQuiz, "Quiz", updatedQuiz);
                             }
                             case 2 -> {
-                                String updatedQuiz = updateQuiz("Update the length of the quiz.", "Please enter the new answer: ");
+                                String updatedQuiz = update("Update the length of the quiz.", "Please enter the new answer: ");
                                 d.updateQuiz(editedQuiz, "Length", updatedQuiz);
                             }
                             case 3 -> {
-                                String updatedQuiz = updateQuiz("Update the topic of the quiz.", "Please enter the new type: ");
+                                String updatedQuiz = update("Update the topic of the quiz.", "Please enter the new type: ");
                                 d.updateQuiz(editedQuiz, "Topic", updatedQuiz);
                             }
                         }
@@ -253,7 +268,7 @@ public class UserInterface {
                 """);
     }
 
-    private void updateMenu(){
+    private void updateMenuQuestion(){
         System.out.println("""   
                              
                 What would you like to update:
@@ -266,12 +281,23 @@ public class UserInterface {
                 """);
     }
 
-    public String updateQuestion(String message, String prompt){
+    private void updateMenuQuiz() {
+        System.out.println("""                
+                                
+                What would you like to update:
+                1. The quiz name
+                2. The length of the quiz
+                3. The topic of the quiz
+
+                """);
+    }
+
+    public String update(String message, String prompt){
         Scanner sc = new Scanner(System.in);
         System.out.println(message);
         System.out.println(prompt);
-        String updatedQuestion = sc.nextLine();
-        return updatedQuestion;
+        String updated = sc.nextLine();
+        return updated;
     }
 
     private Quiz quizDetails(){
@@ -286,38 +312,18 @@ public class UserInterface {
         return new Quiz(quizName, topicOfQuiz, lengthOfQuiz);
     }
 
-    private int inputQuiz(){
+    private int inputQuiz() {
         Database d = new Database();
         Scanner sc = new Scanner(System.in);
         int userChoice;
         List<Quiz> listOfQuizzes = d.readAllQuizzes();
-        if (listOfQuizzes != null){
-            for (int i = 0; i < listOfQuizzes.size(); i++ ){
-                System.out.println((i+1) +  ": " +  listOfQuizzes.get(i).getQuizName());
+        if (listOfQuizzes != null) {
+            for (int i = 0; i < listOfQuizzes.size(); i++) {
+                System.out.println((i + 1) + ": " + listOfQuizzes.get(i).getQuizName());
             }
             userChoice = Integer.parseInt(sc.nextLine());
-            return listOfQuizzes.get(userChoice -1).getQuizID();
+            return listOfQuizzes.get(userChoice - 1).getQuizID();
         }
         return -1;
     }
-
-    private void updateMenuQuiz(){
-        System.out.println("""                
-                
-                What would you like to update:
-                1. The quiz name
-                2. The length of the quiz
-                3. The topic of the quiz
-
-                """);
-    }
-
-    public String updateQuiz(String message, String prompt){
-        Scanner sc = new Scanner(System.in);
-        System.out.println(message);
-        System.out.println(prompt);
-        String updatedQuiz = sc.nextLine();
-        return updatedQuiz;
-    }
-
 }
