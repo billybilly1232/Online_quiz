@@ -22,7 +22,11 @@ public class UserInterface {
      *     Creates a new instance of the database class and sets quit to false.
      * </p>
      * <p>
-     *     Whilst quit is false, it runs
+     *     Whilst quit is false, it runs and displays the user a menu for them to choose an option for.
+     * </p>
+     * <p>
+     *     If the user selects an option that updates either a quiz or a question, they are prompted with
+     *     a respective menu for that.
      * </p>
      */
     public void run() {
@@ -40,7 +44,6 @@ public class UserInterface {
             System.out.println("Please select an option");
             // sets choice to the value the user provided
             int choice = sc.nextInt();
-
             switch (choice) {
                 case 1 -> {
                     // create a question
@@ -217,6 +220,14 @@ public class UserInterface {
         }
     }
 
+    /**
+     * the method for question details.
+     *
+     * <p>Asks the user for the question details (question, answer, marks of the question,
+     * the topic of the question, the type of question.)</p>
+     *
+     * @return Question- a new instance of the question class
+     */
     private Question questionDetails() {
         // initialises a scanner
         Scanner sc = new Scanner(System.in);
@@ -234,6 +245,11 @@ public class UserInterface {
         return new Question(question, topicOfQuestion, typeOfQuestion, answer, marks, false);
     }
 
+    /**
+     * method for displaying a list of questions that is mapped to a numerical value for the user
+     *
+     * @return listOfQuestions - a list of questions mapped to numerical values. or returns -1
+     */
     private int inputQuestion(){
         Database d = new Database();
         Scanner sc = new Scanner(System.in);
@@ -249,6 +265,9 @@ public class UserInterface {
         return -1;
     }
 
+    /**
+     * a method to display the main menu
+     */
     private void menu() {
         System.out.println("""
 
@@ -272,6 +291,9 @@ public class UserInterface {
                 """);
     }
 
+    /**
+     * a method to display the update menu for a question
+     */
     private void updateMenuQuestion(){
         System.out.println("""   
                              
@@ -285,6 +307,9 @@ public class UserInterface {
                 """);
     }
 
+    /**
+     * a method to display the update menu for a quiz
+     */
     private void updateMenuQuiz() {
         System.out.println("""                
                                 
@@ -296,6 +321,13 @@ public class UserInterface {
                 """);
     }
 
+    /**
+     * my method to update what the user has selected
+     *
+     * @param message - displays what the user has selected to change
+     * @param prompt - prompts the user to input what they want to change
+     * @return updated - the updated value
+     */
     public String update(String message, String prompt){
         Scanner sc = new Scanner(System.in);
         System.out.println(message);
@@ -304,6 +336,14 @@ public class UserInterface {
         return updated;
     }
 
+    /**
+     * the method for question details.
+     *
+     * <p>Asks the user for the quiz details (quiz name, length of quiz,
+     * topic of quiz.)</p>
+     *
+     * @return Quiz- a new instance of the quiz class
+     */
     private Quiz quizDetails(){
         // need to figure out how to actually get the questions linked to the quiz.
         Scanner sc = new Scanner(System.in);
@@ -316,6 +356,11 @@ public class UserInterface {
         return new Quiz(quizName, topicOfQuiz, lengthOfQuiz);
     }
 
+    /**
+     * method for displaying a list of quizzes that is mapped to a numerical value for the user
+     *
+     * @return listOfQuizzes - - a list of quizzes mapped to numerical values. or returns -1
+     */
     private int inputQuiz() {
         Database d = new Database();
         Scanner sc = new Scanner(System.in);
