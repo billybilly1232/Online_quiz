@@ -12,7 +12,7 @@ public class TestingManyToMany {
         Question q1 = new Question("Why Square?","Existensial Questions","SAQ","Maths",21,false);
         Question q2 = new Question("Commit hard? \n 1. Yes \n 2. No","Git","MCQ","1",69,false);
         Set<Question> questions = new HashSet<>(Arrays.asList(q1,q2));
-        Quiz quiz1 = new Quiz("Life",2);
+        Quiz quiz1 = new Quiz("iMAGE","Life",2);
         Set<Quiz> quizzes = new HashSet<>(Arrays.asList(quiz1));
 
 

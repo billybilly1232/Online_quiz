@@ -123,7 +123,6 @@ public class Question {
                 ", answer='" + answer + '\'' +
                 ", marks=" + marks +
                 ", incorrectlyAnswered=" + incorrectlyAnswered +
-                ", quizzes=" + quizzes +
                 '}';
     }
 }

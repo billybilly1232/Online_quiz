@@ -12,7 +12,7 @@ public class TestingOneToMany {
         List<Log> logList  = new ArrayList<>();
         logList.add(l1);
 
-        Quiz q1 = new Quiz("Star Trek", 50);
+        Quiz q1 = new Quiz("Star Trek","Star Trek", 50);
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
