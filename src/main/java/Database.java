@@ -6,12 +6,7 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class Database {
-/*
-create question
-read/list questions
-update questions
-delete questions
- */
+
 
     public void createQuestion(Question questionDetails) {
         // need to figure out how to add the created question to the db

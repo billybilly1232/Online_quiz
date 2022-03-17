@@ -58,7 +58,7 @@ public class UserInterface {
                         System.out.println(d.readQuestion(questionID).toString());
                     }
                     else{
-                        System.out.println("An Error occurred. ");
+                        System.out.println("An error occurred. ");
                     }
                 }
                 case 3 ->{
@@ -98,24 +98,19 @@ public class UserInterface {
                     }
                 }
                 case 4 -> {
-                    //delete a question
-                    System.out.println("Delete a question.");
-                    int deletedQuestion = inputQuestion();
-                    if (deletedQuestion != -1) {
-                        Scanner scanner = new Scanner(System.in);
-                        String confirmation;
-                        System.out.println("Would you like to delete it? ");
-                        confirmation = scanner.nextLine();
-                        if (confirmation.equals("y") || confirmation.equals("Y")){
-                            System.out.println("Question will now be deleted.");
-                            d.deleteQuestion(deletedQuestion);
+                    int deleteQuestionNumber = inputQuestion();
+                    if (deleteQuestionNumber != -1) {
+                        Boolean deletedQuestion = delete("Delete a question. ", "Would you like to delete it? ");
+                        if (deletedQuestion){
+                            System.out.println("The question will now be deleted");
+                            d.deleteQuestion(deleteQuestionNumber);
                         }
                         else{
                             System.out.println("Deletion cancelled.");
                         }
                     }
                     else{
-                        System.out.println("An error occurred. ");
+                        System.out.println("An error occurred.");
                     }
                 }
                 case 5 ->{
@@ -158,22 +153,25 @@ public class UserInterface {
                             }
                         }
                     }
+                    else{
+                        System.out.println("An error occurred.");
+                    }
                 }
                 case 8 ->{
                     //delete a quiz
-                    System.out.println("Delete a quiz.");
-                    int deletedQuiz = inputQuiz();
-                    if (deletedQuiz != -1) {
-                        Scanner scanner = new Scanner(System.in);
-                        String confirmation;
-                        System.out.println("Would you like to delete it? ");
-                        confirmation = scanner.nextLine();
-                        if (confirmation.equals("y") || confirmation.equals("Y")) {
-                            System.out.println("Quiz will now be deleted.");
-                            d.deleteQuiz(deletedQuiz);
-                        } else {
+                    int deleteQuizNumber = inputQuiz();
+                    if (deleteQuizNumber != -1) {
+                        Boolean deletedQuiz = delete("Delete a quiz. ", "Would you like to delete it? ");
+                        if (deletedQuiz){
+                            System.out.println("The quiz will now be deleted");
+                            d.deleteQuestion(deleteQuizNumber);
+                        }
+                        else{
                             System.out.println("Deletion cancelled.");
                         }
+                    }
+                    else{
+                        System.out.println("An error occurred.");
                     }
                 }
                 case 9 ->{
@@ -334,6 +332,18 @@ public class UserInterface {
         System.out.println(prompt);
         String updated = sc.nextLine();
         return updated;
+    }
+
+    public Boolean delete(String message, String prompt){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(message);
+        System.out.println(prompt);
+        String delete = sc.nextLine();
+        if (delete.equals("y") || delete.equals("Y")){
+            System.out.println("Question will now be deleted.");
+            return true;
+        }
+        return false;
     }
 
     /**
