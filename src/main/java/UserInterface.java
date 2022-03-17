@@ -19,7 +19,7 @@ public class UserInterface {
     /**
      * sets up my run method.
      * <p>
-     *     Creates a new instamce of the database class and sets quit to false.
+     *     Creates a new instance of the database class and sets quit to false.
      * </p>
      * <p>
      *     Whilst quit is false, it runs
