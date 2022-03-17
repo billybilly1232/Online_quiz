@@ -18,8 +18,12 @@ public class UserInterface {
 
     /**
      * sets up my run method.
-     *
-     * GOT UP TO HERE IN JAVADOCING
+     * <p>
+     *     Creates a new instamce of the database class and sets quit to false.
+     * </p>
+     * <p>
+     *     Whilst quit is false, it runs
+     * </p>
      */
     public void run() {
         Database d = new Database();
