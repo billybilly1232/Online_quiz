@@ -4,7 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Database {
 
@@ -105,7 +107,16 @@ public class Database {
         return questions;
     }
 
-    public void createQuiz(Quiz addQuiz) {
+    public void createQuiz(String quizName, String quizTopic, int quizLength, List<Integer> questionIDList) {
+        Quiz newQuiz = new Quiz(quizName, quizTopic, quizLength);
+        List<Quiz> quizList = new ArrayList<>();
+        quizList.add(newQuiz);
+        Set<Quiz> quizzes = new HashSet<>(quizList);
+        List<Question> questionsList = new ArrayList<>();
+        for (int questionID: questionIDList) {
+            questionsList.add(readQuestion(questionID));
+        }
+        Set<Question> questions = new HashSet<>(questionsList);
         // method for creating a quiz
         Session s = null;
         try {
@@ -113,8 +124,21 @@ public class Database {
             s = HibernateUtil.getSessionFactory().openSession();
             // begins the transaction
             s.beginTransaction();
-            s.save(addQuiz);
+            for (Question question : questions){
+                s.update(question);
+            }
+            for (Quiz quiz : quizzes){
+                s.persist(quiz);
+            }
+            for (Question question : questions){
+                quizList = new ArrayList<>(question.getQuizzes());
+                quizList.add(newQuiz);
+                quizzes = new HashSet<>(quizList);
+                question.setQuizzes(quizzes);
+                s.save(question);
+            }
             // saves the transaction
+            s.persist(newQuiz);
             s.getTransaction().commit();
         } catch (HibernateException e) {
             // if something goes wrong, rollback to the previous transaction

@@ -1,6 +1,5 @@
+import java.util.*;
 
-import java.util.List;
-import java.util.Scanner;
 /**
  * <p> This is my user interface class</p>
  *
@@ -153,7 +152,7 @@ public class UserInterface {
                 case 5 -> {
                     //create a quiz
                     System.out.println("Create a quiz.");
-                    d.createQuiz(quizDetails());
+                    createQuiz();
                 }
                 case 6 -> {
                     //read a quiz
@@ -162,7 +161,7 @@ public class UserInterface {
                     int quizID = inputQuiz();
                     if (quizID != -1){
                         // if the quiz ID doesn't equal -1, outputs the specified quiz
-                        System.out.println(d.readQuestion(quizID).toString());
+                        System.out.println(d.readQuiz(quizID).toString());
                     }
                     else{
                         // else outputs that an error occurred
@@ -420,21 +419,46 @@ public class UserInterface {
      * <p>Asks the user for the quiz details (quiz name, length of quiz,
      * topic of quiz.)</p>
      *
-     * @return Quiz- a new instance of the quiz class
+     *
      */
-    private Quiz quizDetails() {
-        // need to figure out how to actually get the questions linked to the quiz.
-        // initialises the scanner
+    private void createQuiz() {
         Scanner sc = new Scanner(System.in);
+        Database d = new Database();
+        Random r = new Random();
         // takes the user input for the quiz details
         System.out.println("Please enter the name of the quiz: ");
         String quizName = sc.nextLine();
         System.out.println("Please enter the topic of the quiz: ");
-        String topicOfQuiz = sc.nextLine();
-        System.out.println("Please enter the length of the quiz: ");
-        int lengthOfQuiz = Integer.parseInt(sc.nextLine());
-        // returns a new instance of thr quiz class with the details provided
-        return new Quiz(quizName, topicOfQuiz, lengthOfQuiz);
+        String quizTopic = sc.nextLine();
+        System.out.println("Please enter if you want to randomly generate: true/false:");
+        boolean choice = Boolean.parseBoolean(sc.nextLine());
+        List<Integer> questionIDList = new ArrayList<>();
+        int lengthOfQuiz = 0;
+        if (choice){
+            System.out.println("""
+                    1. 5
+                    2. 10
+                    3. 15
+                    4. 20
+                    """);
+            int menuChoice = Integer.parseInt(sc.nextLine());
+            switch (menuChoice){
+                case 1 -> lengthOfQuiz = 5;
+                case 2 -> lengthOfQuiz = 10;
+                case 3 -> lengthOfQuiz = 15;
+                case 4 -> lengthOfQuiz = 20;
+            }
+            for (int i =0; i < lengthOfQuiz; i ++){
+                questionIDList.add(d.readAllQuestions().get(r.nextInt(d.readAllQuestions().size()-1)).getQuestionID());
+            }
+        } else {
+            System.out.println("Please enter the length of the quiz: ");
+            lengthOfQuiz = Integer.parseInt(sc.nextLine());
+            for (int i = 0; i < lengthOfQuiz; i++) {
+                questionIDList.add(inputQuestion());
+            }
+        }
+        d.createQuiz(quizName, quizTopic, lengthOfQuiz, questionIDList);
     }
 
     /**

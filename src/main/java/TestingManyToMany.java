@@ -5,7 +5,7 @@ import csc1035.project2.HibernateUtil;
 import java.util.*;
 
 public class TestingManyToMany {
-
+    /*
     public static void main(String[] args) {
         Session session = null;
 
@@ -41,6 +41,47 @@ public class TestingManyToMany {
                 session.close();
             }
         }
+    }
+
+     */
+    public static void main(String[] args) {
+        Database d = new Database();
+        List<Question> questionList = new ArrayList<>();
+        questionList.addAll(d.readAllQuestions().subList(0,3));
+        Set<Question> questions = new HashSet<>(questionList);
+        List<Quiz> quizzesList = new ArrayList<>();
+        quizzesList.add(d.readAllQuizzes().get(0));
+        Set<Quiz> quizzes = new HashSet<>(quizzesList);
+        // method for creating a quiz
+        Session s = null;
+        try {
+            // creates a new session with the database
+            s = HibernateUtil.getSessionFactory().openSession();
+            // begins the transaction
+            s.beginTransaction();
+            for (Question question : questions){
+                s.update(question);
+            }
+            for (Quiz quiz : quizzes){
+                s.update(quiz);
+            }
+            for (Question question : questions){
+                question.setQuizzes(quizzes);
+                s.update(question);
+            }
+            // saves the transaction
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            // if something goes wrong, rollback to the previous transaction
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+                // closes the session
+            }
+        }
+
     }
 
 }
