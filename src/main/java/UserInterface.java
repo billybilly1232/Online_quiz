@@ -424,7 +424,7 @@ public class UserInterface {
     public Boolean delete(String message, String prompt) {
         // initialises a new instance of the database and a new scanner
         Scanner sc = new Scanner(System.in);
-        // outputs the given message anf the given prompt
+        // outputs the given message and the given prompt
         System.out.println(message);
         System.out.println(prompt);
         // takes the value of delete to be what the user input
