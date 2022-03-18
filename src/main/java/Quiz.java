@@ -83,4 +83,12 @@ public class Quiz {
     public void setLogs(List<Log> logs) {
         this.logs = logs;
     }
+
+    public void addQuestion(Question question){this.questions.add(question);}
+
+    public void removeQuestion(Question question){this.questions.remove(question);}
+
+    public void addLog(Log log){this.logs.add(log);}
+
+    public void removeLog(Log log){this.logs.remove(log);}
 }

@@ -91,22 +91,11 @@ public class Database {
     }
 
     public List readAllQuestions(){
-        Session s = null;
-        try{
-            s = HibernateUtil.getSessionFactory().openSession();
-            s.beginTransaction();
-            Query readAll = s.createQuery("from QUESTION");
-            s.getTransaction().commit();
-            return readAll.getResultList();
-        } catch (HibernateException e) {
-            if (s != null) s.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            if (s != null) {
-                s.close();
-            }
-        }
-        return null;
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query readAll = s.createQuery("from QUESTION");
+        s.getTransaction().commit();
+        return readAll.getResultList();
     }
 
     public void createQuiz(Quiz addQuiz) {
@@ -190,22 +179,11 @@ public class Database {
     }
 
     public List readAllQuizzes(){
-        Session s = null;
-        try{
-            s = HibernateUtil.getSessionFactory().openSession();
-            s.beginTransaction();
-            Query readAll = s.createQuery("from QUIZ");
-            s.getTransaction().commit();
-            return readAll.getResultList();
-        } catch (HibernateException e) {
-            if (s != null) s.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            if (s != null) {
-                s.close();
-            }
-        }
-        return null;
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query readAll = s.createQuery("from QUIZ");
+        s.getTransaction().commit();
+        return readAll.getResultList();
     }
 
     public void createLog(Log addLog){
@@ -251,21 +229,10 @@ public class Database {
     }
 
     public List readAllLogs(){
-        Session s = null;
-        try{
-            s = HibernateUtil.getSessionFactory().openSession();
-            s.beginTransaction();
-            Query readAll = s.createQuery("from LOG");
-            s.getTransaction().commit();
-            return readAll.getResultList();
-        } catch (HibernateException e) {
-            if (s != null) s.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            if (s != null) {
-                s.close();
-            }
-        }
-        return null;
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query readAll = s.createQuery("from LOG");
+        s.getTransaction().commit();
+        return readAll.getResultList();
     }
 }

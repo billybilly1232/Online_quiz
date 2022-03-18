@@ -113,6 +113,10 @@ public class Question {
         this.quizzes = quizzes;
     }
 
+    public void addQuiz(Quiz quiz){this.quizzes.add(quiz);}
+
+    public void removeQuiz(Quiz quiz){this.quizzes.remove(quiz);}
+
     @Override
     public String toString() {
         return "Question{" +
