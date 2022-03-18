@@ -3,6 +3,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
@@ -90,13 +91,17 @@ public class Database {
         }
     }
 
-    public List readAllQuestions(){
+    public List<Question> readAllQuestions(){
         Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
         Query readAll = s.createQuery("from QUESTION");
         s.getTransaction().commit();
         s.close();
-        return readAll.getResultList();
+        List<Question> questions = new ArrayList<>();
+        for (Object question : readAll.getResultList()){
+            questions.add((Question) question);
+        }
+        return questions;
     }
 
     public void createQuiz(Quiz addQuiz) {
@@ -179,13 +184,17 @@ public class Database {
         }
     }
 
-    public List readAllQuizzes(){
+    public List<Quiz> readAllQuizzes(){
         Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
         Query readAll = s.createQuery("from QUIZ");
         s.getTransaction().commit();
         s.close();
-        return readAll.getResultList();
+        List<Quiz> quizzes = new ArrayList<>();
+        for (Object quiz : readAll.getResultList()){
+            quizzes.add((Quiz) quiz);
+        }
+        return quizzes;
     }
 
     public void createLog(Log addLog){
@@ -230,12 +239,16 @@ public class Database {
         }
     }
 
-    public List readAllLogs(){
+    public List<Log> readAllLogs(){
         Session s = HibernateUtil.getSessionFactory().openSession();
         s.beginTransaction();
         Query readAll = s.createQuery("from LOG");
         s.getTransaction().commit();
         s.close();
-        return readAll.getResultList();
+        List<Log> logs = new ArrayList<>();
+        for (Object log : readAll.getResultList()){
+            logs.add((Log) log);
+        }
+        return logs;
     }
 }

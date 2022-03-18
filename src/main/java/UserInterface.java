@@ -300,7 +300,7 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         int userChoice;
         List<Question> listOfQuestions = d.readAllQuestions();
-        if (listOfQuestions != null){
+        if (listOfQuestions.size() != 0){
             for (int i = 0; i < listOfQuestions.size(); i++ ){
                 System.out.println((i+1) +  ": " +  listOfQuestions.get(i).getQuestion());
             }
