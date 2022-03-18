@@ -165,6 +165,50 @@ public class Database {
         }
     }
 
+    public void updateQuestionQuiz(int quizID, boolean add, Question question){
+        Session s = null;
+        try{
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Quiz q = (s.get(Quiz.class, quizID));
+            if (add) {
+                q.addQuestion(question);
+            } else{
+                q.removeQuestion(question);
+            }
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+    }
+
+    public void updateLogQuiz(int quizID, boolean add, Log log){
+        Session s = null;
+        try{
+            s = HibernateUtil.getSessionFactory().openSession();
+            s.beginTransaction();
+            Quiz q = (s.get(Quiz.class, quizID));
+            if (add) {
+                q.addLog(log);
+            } else{
+                q.removeLog(log);
+            }
+            s.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (s != null) s.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            if (s != null) {
+                s.close();
+            }
+        }
+    }
+
     public void deleteQuiz(int quizID){
         // method for deleting a quiz
         Session s = null;
