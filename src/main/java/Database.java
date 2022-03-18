@@ -166,17 +166,24 @@ public class Database {
         }
     }
 
-    public void updateQuestionQuiz(int quizID, boolean add, Question question){
+    public void updateQuestionQuiz(int quizID, boolean add, int questionID){
         Session s = null;
         try{
             s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
+            Question question = readQuestion(questionID);
+            s.persist(question);
             Quiz q = (s.get(Quiz.class, quizID));
             if (add) {
                 q.addQuestion(question);
+                question.addQuiz(q);
+                s.persist(question);
             } else{
                 q.removeQuestion(question);
+                question.removeQuiz(q);
+                s.persist(question);
             }
+            s.persist(q);
             s.getTransaction().commit();
         } catch (HibernateException e) {
             if (s != null) s.getTransaction().rollback();
@@ -187,6 +194,7 @@ public class Database {
             }
         }
     }
+
 
     public void updateLogQuiz(int quizID, boolean add, Log log){
         Session s = null;
