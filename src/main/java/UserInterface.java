@@ -1,6 +1,6 @@
+
 import java.util.List;
 import java.util.Scanner;
-
 /**
  * <p> This is my user interface class</p>
  *
@@ -11,8 +11,10 @@ import java.util.Scanner;
  *
  * @author Eden Mason
  */
+
 public class UserInterface {
     public static void main(String[] args) {
+        // runs a new instance of the user interface
         new UserInterface().run();
     }
 
@@ -30,6 +32,7 @@ public class UserInterface {
      * </p>
      */
     public void run() {
+        // sets up a new instance of the database class
         Database d = new Database();
         boolean quit = false;
         // sets the quit value to false
@@ -44,102 +47,144 @@ public class UserInterface {
             System.out.println("Please select an option");
             // sets choice to the value the user provided
             int choice = sc.nextInt();
+            // for the choice the user selects, it runs the respective case
             switch (choice) {
                 case 1 -> {
                     // create a question
                     System.out.println("Create a question.");
                     d.createQuestion(questionDetails());
                 }
-                case 2 ->{
+                case 2 -> {
                     // read a question
                     System.out.println("Read/view a question.");
+                    // calls the input question function
                     int questionID = inputQuestion();
                     if (questionID != -1){
+                        // if question ID does not equal -1, print out the specified question
                         System.out.println(d.readQuestion(questionID).toString());
                     }
                     else{
+                        // else output an error occurred
                         System.out.println("An error occurred. ");
                     }
                 }
-                case 3 ->{
+                case 3 -> {
                     // update a question
                     System.out.println("Update/edit a question.");
                     System.out.println("Which question would you like to edit? ");
-                    // print out question
+                    // calls the input question function
                     int editedQuestion = inputQuestion();
                     if (editedQuestion != -1) {
+                        // if the given value does not equal -1, call the update menu for questions
                       updateMenuQuestion();
                         int choiceUpdateQuestion = sc.nextInt();
+                        // for the user choice provided, run the respective case
                         switch (choiceUpdateQuestion) {
                             case 1 -> {
+                                /* update the question itself
+                                calls the update function with the parameters specified
+                                 */
                                 String updatedQuestion = update("Update the question itself.", "Please enter the new question: ");
+                                // updates the question with the values provided
                                 d.updateQuestion(editedQuestion, "Question", updatedQuestion);
                             }
                             case 2 -> {
+                                  /* update the answer
+                                calls the update function with the parameters specified
+                                 */
                                 String updatedQuestion = update("Update the answer.", "Please enter the new answer: ");
+                                // updates the question with the values provided
                                 d.updateQuestion(editedQuestion, "Answer", updatedQuestion);
                             }
                             case 3 -> {
+                                 /* update the type
+                                calls the update function with the parameters specified
+                                 */
                                 String updatedQuestion = update("Update the type.", "Please enter the new type: ");
+                                // updates the question with the values provided
                                 d.updateQuestion(editedQuestion, "Type", updatedQuestion);
                             }
                             case 4 -> {
+                                  /* update the topic
+                                calls the update function with the parameters specified
+                                 */
                                 String updatedQuestion = update("Update the topic. ", "Please enter the new topic: ");
+                                // updates the question with the values provided
                                 d.updateQuestion(editedQuestion, "Topic", updatedQuestion);
                             }
                             case 5 -> {
+                                 /* update the marks
+                                calls the update function with the parameters specified
+                                 */
                                 String updatedQuestion = update("Update how many marks the question is worth.", "Please enter the new mark amount:");
+                                // updates the question with the values provided
                                 d.updateQuestion(editedQuestion, "Marks", updatedQuestion);
                             }
                         }
                     }
                     else{
+                        // outputs that an error occurred
                         System.out.println("An error occurred. ");
                     }
                 }
                 case 4 -> {
+                    /* delete a question
+                    calls the input question function
+                     */
                     int deleteQuestionNumber = inputQuestion();
                     if (deleteQuestionNumber != -1) {
+                        // if deleteQUestionNumber doesn't equal -1, calls the delete function with the parameters provided
                         Boolean deletedQuestion = delete("Delete a question. ", "Would you like to delete it? ");
                         if (deletedQuestion){
-                            System.out.println("The question will now be deleted");
+                            // if deleted question is returned as true, deletes the question
                             d.deleteQuestion(deleteQuestionNumber);
+                            System.out.println("Question deleted.");
                         }
                         else{
+                            // else, outputs that the deletion was cancelled
                             System.out.println("Deletion cancelled.");
                         }
                     }
                     else{
+                        // else outputs that an error occurred
                         System.out.println("An error occurred.");
                     }
                 }
-                case 5 ->{
+                case 5 -> {
                     //create a quiz
                     System.out.println("Create a quiz.");
                     d.createQuiz(quizDetails());
                 }
-                case 6 ->{
+                case 6 -> {
                     //read a quiz
                     System.out.println("Read/view a quiz.");
+                    // calls the input quiz function
                     int quizID = inputQuiz();
                     if (quizID != -1){
+                        // if the quiz ID doesn't equal -1, outputs the specified quiz
                         System.out.println(d.readQuestion(quizID).toString());
                     }
                     else{
+                        // else outputs that an error occurred
                         System.out.println("An Error occurred. ");
                     }
                 }
-                case 7 ->{
+                case 7 -> {
                     //update a quiz
                     System.out.println("Update/edit a quiz.");
                     System.out.println("Which question would you like to edit? ");
-                    // print out question
+                    // calls the input quiz method
                     int editedQuiz = inputQuiz();
                     if (editedQuiz != -1) {
+                        // if the specified quiz is not equal to -1, calls rhe update menu function
                         updateMenuQuiz();
                         int choiceUpdateQuestion = sc.nextInt();
+                        // for the choice the user specifies, runs the given case for that number
                         switch (choiceUpdateQuestion) {
                             case 1 -> {
+                                /*
+                                update the quiz name itself
+                                 */
                                 String updatedQuiz = update("Update the question itself.", "Please enter the new question: ");
                                 d.updateQuiz(editedQuiz, "Quiz", updatedQuiz);
                             }
@@ -157,14 +202,14 @@ public class UserInterface {
                         System.out.println("An error occurred.");
                     }
                 }
-                case 8 ->{
+                case 8 -> {
                     //delete a quiz
                     int deleteQuizNumber = inputQuiz();
                     if (deleteQuizNumber != -1) {
                         Boolean deletedQuiz = delete("Delete a quiz. ", "Would you like to delete it? ");
                         if (deletedQuiz){
-                            System.out.println("The quiz will now be deleted");
                             d.deleteQuestion(deleteQuizNumber);
+                            System.out.println("Quiz deleted.");
                         }
                         else{
                             System.out.println("Deletion cancelled.");
@@ -174,7 +219,7 @@ public class UserInterface {
                         System.out.println("An error occurred.");
                     }
                 }
-                case 9 ->{
+                case 9 -> {
                     //search by topic
                     System.out.println("Search by topic.");
                     System.out.println("This has not been implemented yet.");
@@ -184,35 +229,37 @@ public class UserInterface {
                     System.out.println("Search by type.");
                     System.out.println("This has not been implemented yet.");
                 }
-                case 11 ->{
+                case 11 -> {
                     //5 question quiz
                     System.out.println("5 question quiz.");
                     System.out.println("This has not been implemented yet.");
                 }
-                case 12 ->{
+                case 12 -> {
                     //10 question quiz
                     System.out.println("10 question quiz.");
                     System.out.println("This has not been implemented yet.");
                 }
-                case 13 ->{
+                case 13 -> {
                     //15 question quiz
                     System.out.println("15 question quiz.");
                     System.out.println("This has not been implemented yet.");
                 }
-                case 14 ->{
+                case 14 -> {
                     //20 question quiz
                     System.out.println("20 question quiz.");
                     System.out.println("This has not been implemented yet.");
                 }
-                case 15 ->{
+                case 15 -> {
                     //view statistics
                     System.out.println("View statistics.");
                     System.out.println("This has not been implemented yet.");
                 }
                 case 16 -> {
+                    // quits the program
                     System.out.println("Quitting.");
                     quit = true;
                 }
+                // notifies the user if they select an invalid option
                 default -> System.out.println("Not a valid option");
             }
         }
@@ -248,7 +295,7 @@ public class UserInterface {
      *
      * @return listOfQuestions - a list of questions mapped to numerical values. or returns -1
      */
-    private int inputQuestion(){
+    private int inputQuestion() {
         Database d = new Database();
         Scanner sc = new Scanner(System.in);
         int userChoice;
@@ -292,7 +339,7 @@ public class UserInterface {
     /**
      * a method to display the update menu for a question
      */
-    private void updateMenuQuestion(){
+    private void updateMenuQuestion() {
         System.out.println("""   
                              
                 What would you like to update:
@@ -326,7 +373,7 @@ public class UserInterface {
      * @param prompt - prompts the user to input what they want to change
      * @return updated - the updated value
      */
-    public String update(String message, String prompt){
+    public String update(String message, String prompt) {
         Scanner sc = new Scanner(System.in);
         System.out.println(message);
         System.out.println(prompt);
@@ -340,7 +387,7 @@ public class UserInterface {
      *  @param prompt - prompts the user to input what they want to change
      * @return a boolean value of true or false
      */
-    public Boolean delete(String message, String prompt){
+    public Boolean delete(String message, String prompt) {
         Scanner sc = new Scanner(System.in);
         System.out.println(message);
         System.out.println(prompt);
@@ -360,7 +407,7 @@ public class UserInterface {
      *
      * @return Quiz- a new instance of the quiz class
      */
-    private Quiz quizDetails(){
+    private Quiz quizDetails() {
         // need to figure out how to actually get the questions linked to the quiz.
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the name of the quiz: ");
