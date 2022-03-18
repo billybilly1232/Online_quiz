@@ -36,6 +36,13 @@ public class Quiz {
         this.lengthOfQuiz = lengthOfQuiz;
     }
 
+    public Quiz(String name, String topicOfQuiz, int lengthOfQuiz, Set<Question> questions) {
+        this.quizName = name;
+        this.topicOfQuiz = topicOfQuiz;
+        this.lengthOfQuiz = lengthOfQuiz;
+        this.questions = questions;
+    }
+
     public int getQuizID() {
         return quizID;
     }
@@ -91,4 +98,14 @@ public class Quiz {
     public void addLog(Log log){this.logs.add(log);}
 
     public void removeLog(Log log){this.logs.remove(log);}
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "quizID=" + quizID +
+                ", quizName='" + quizName + '\'' +
+                ", topicOfQuiz='" + topicOfQuiz + '\'' +
+                ", lengthOfQuiz=" + lengthOfQuiz +
+                '}';
+    }
 }

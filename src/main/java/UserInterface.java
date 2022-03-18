@@ -1,3 +1,4 @@
+
 import java.util.List;
 import java.util.Scanner;
 /**
@@ -248,11 +249,31 @@ public class UserInterface {
                     System.out.println("This has not been implemented yet.");
                 }
                 case 11 -> {
+                    //5 question quiz
+                    System.out.println("5 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 12 -> {
+                    //10 question quiz
+                    System.out.println("10 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 13 -> {
+                    //15 question quiz
+                    System.out.println("15 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 14 -> {
+                    //20 question quiz
+                    System.out.println("20 question quiz.");
+                    System.out.println("This has not been implemented yet.");
+                }
+                case 15 -> {
                     //view statistics
                     System.out.println("View statistics.");
                     System.out.println("This has not been implemented yet.");
                 }
-                case 12 -> {
+                case 16 -> {
                     // quits the program
                     System.out.println("Quitting.");
                     quit = true;
@@ -334,8 +355,12 @@ public class UserInterface {
                 8: Delete a Quiz
                 9: Search by Topic
                 10: Search by Type
-                11: View Statistics
-                12: Quit
+                11: 5 Question Quiz
+                12: 10 Question Quiz
+                13: 15 Question Quiz
+                14: 20 Question Quiz
+                15: View Statistics
+                16: Quit
                 
                 """);
     }

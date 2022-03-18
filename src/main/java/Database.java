@@ -96,9 +96,10 @@ public class Database {
         s.beginTransaction();
         Query readAll = s.createQuery("from QUESTION");
         s.getTransaction().commit();
+        List queryList = readAll.getResultList();
         s.close();
         List<Question> questions = new ArrayList<>();
-        for (Object question : readAll.getResultList()){
+        for (Object question : queryList){
             questions.add((Question) question);
         }
         return questions;
@@ -233,9 +234,10 @@ public class Database {
         s.beginTransaction();
         Query readAll = s.createQuery("from QUIZ");
         s.getTransaction().commit();
+        List queryList = readAll.getResultList();
         s.close();
         List<Quiz> quizzes = new ArrayList<>();
-        for (Object quiz : readAll.getResultList()){
+        for (Object quiz : queryList){
             quizzes.add((Quiz) quiz);
         }
         return quizzes;
