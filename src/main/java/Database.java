@@ -95,6 +95,7 @@ public class Database {
         s.beginTransaction();
         Query readAll = s.createQuery("from QUESTION");
         s.getTransaction().commit();
+        s.close();
         return readAll.getResultList();
     }
 
@@ -183,6 +184,7 @@ public class Database {
         s.beginTransaction();
         Query readAll = s.createQuery("from QUIZ");
         s.getTransaction().commit();
+        s.close();
         return readAll.getResultList();
     }
 
@@ -233,6 +235,7 @@ public class Database {
         s.beginTransaction();
         Query readAll = s.createQuery("from LOG");
         s.getTransaction().commit();
+        s.close();
         return readAll.getResultList();
     }
 }
