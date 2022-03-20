@@ -417,31 +417,33 @@ public class UserInterface {
      * the method for question details.
      *
      * <p>Asks the user for the quiz details (quiz name, length of quiz,
-     * topic of quiz.)</p>
-     *
+     * topic of quiz.)
+     * </p>
+     *<p>
+     *     And creates the quiz with the respective number of questions.
+     *</p>
      *
      */
     private void createQuiz() {
+        // sets up the scanners and a new instance of the database class and a new instance of Random
         Scanner sc = new Scanner(System.in);
         Database d = new Database();
         Random r = new Random();
-        // takes the user input for the quiz details
+        // takes the user input for the quiz details, and if they want it to be randonly generated
         System.out.println("Please enter the name of the quiz: ");
         String quizName = sc.nextLine();
         System.out.println("Please enter the topic of the quiz: ");
         String quizTopic = sc.nextLine();
-        System.out.println("Please enter if you want to randomly generate: true/false:");
+        System.out.println("Please enter if you want to randomly generate: (true/false):");
         boolean choice = Boolean.parseBoolean(sc.nextLine());
+        // sets up a new QuestionID array list
         List<Integer> questionIDList = new ArrayList<>();
         int lengthOfQuiz = 0;
         if (choice){
-            System.out.println("""
-                    1. 5
-                    2. 10
-                    3. 15
-                    4. 20
-                    """);
+            // if choice is true, then display the menu of lengths
+            quizLengthMenu();
             int menuChoice = Integer.parseInt(sc.nextLine());
+            // ask the user for their choice and run the respective case
             switch (menuChoice){
                 case 1 -> lengthOfQuiz = 5;
                 case 2 -> lengthOfQuiz = 10;
@@ -449,16 +451,34 @@ public class UserInterface {
                 case 4 -> lengthOfQuiz = 20;
             }
             for (int i =0; i < lengthOfQuiz; i ++){
+                /* for i is zero and less than the length of the quiz
+                add the question ID to the list of question ID
+                 */
                 questionIDList.add(d.readAllQuestions().get(r.nextInt(d.readAllQuestions().size()-1)).getQuestionID());
             }
         } else {
+            // if the user does not want a randomly generated quiz, manually enter the length and manually add the questions
             System.out.println("Please enter the length of the quiz: ");
             lengthOfQuiz = Integer.parseInt(sc.nextLine());
             for (int i = 0; i < lengthOfQuiz; i++) {
                 questionIDList.add(inputQuestion());
             }
         }
+        // add the quizzes with the questions to the database
         d.createQuiz(quizName, quizTopic, lengthOfQuiz, questionIDList);
+    }
+
+    /**
+     * a method to display the menu of quiz lengths
+     */
+    private void quizLengthMenu(){
+        // output the quiz length menu
+        System.out.println("""
+                    1. 5
+                    2. 10
+                    3. 15
+                    4. 20
+                    """);
     }
 
     /**
