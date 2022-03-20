@@ -1,5 +1,6 @@
 import java.util.*;
-
+import java.util.List;
+import java.util.Scanner;
 /**
  * <p> This is my user interface class</p>
  *
@@ -303,10 +304,10 @@ public class UserInterface {
         List<Question> listOfQuestions = d.readAllQuestions();
         if (listOfQuestions != null){
             // if the list of questions is not null
-            for (int i = 0; i < listOfQuestions.size(); i++ ){
-                // for i is less than the list of questions
-                System.out.println((i+1) +  ": " +  listOfQuestions.get(i).getQuestion());
-                // output i+1 along with the question that value is associated with from the list of questions
+            for (int x = 0; x < listOfQuestions.size(); x++ ){
+                // for x is less than the list of questions
+                System.out.println((x + 1) +  ": " +  listOfQuestions.get(x).getQuestion());
+                // output x+1 along with the question that value is associated with from the list of questions
             }
             // takes the user choice from the displayed list of questions
             userChoice = Integer.parseInt(sc.nextLine());
@@ -429,7 +430,7 @@ public class UserInterface {
         Scanner sc = new Scanner(System.in);
         Database d = new Database();
         Random r = new Random();
-        // takes the user input for the quiz details, and if they want it to be randonly generated
+        // takes the user input for the quiz details, and if they want it to be randomly generated
         System.out.println("Please enter the name of the quiz: ");
         String quizName = sc.nextLine();
         System.out.println("Please enter the topic of the quiz: ");
@@ -450,8 +451,8 @@ public class UserInterface {
                 case 3 -> lengthOfQuiz = 15;
                 case 4 -> lengthOfQuiz = 20;
             }
-            for (int i =0; i < lengthOfQuiz; i ++){
-                /* for i is zero and less than the length of the quiz
+            for (int x =0; x < lengthOfQuiz; x ++){
+                /* for x is zero and less than the length of the quiz
                 add the question ID to the list of question ID
                  */
                 questionIDList.add(d.readAllQuestions().get(r.nextInt(d.readAllQuestions().size()-1)).getQuestionID());
@@ -460,7 +461,7 @@ public class UserInterface {
             // if the user does not want a randomly generated quiz, manually enter the length and manually add the questions
             System.out.println("Please enter the length of the quiz: ");
             lengthOfQuiz = Integer.parseInt(sc.nextLine());
-            for (int i = 0; i < lengthOfQuiz; i++) {
+            for (int x = 0; x < lengthOfQuiz; x++) {
                 questionIDList.add(inputQuestion());
             }
         }
@@ -495,9 +496,9 @@ public class UserInterface {
         List<Quiz> listOfQuizzes = d.readAllQuizzes();
         // if the list of quizzes is not null
         if (listOfQuizzes != null) {
-            for (int i = 0; i < listOfQuizzes.size(); i++) {
-                // for i is less than the list of quizzes
-                System.out.println((i + 1) + ": " + listOfQuizzes.get(i).getQuizName());
+            for (int x = 0; x < listOfQuizzes.size(); x++) {
+                // for x is less than the list of quizzes
+                System.out.println((x + 1) + ": " + listOfQuizzes.get(x).getQuizName());
                 // output i+1 along with the question that value is associated with from the list of quizzes
             }
             // takes the user choice from the displayed list of quizzes
