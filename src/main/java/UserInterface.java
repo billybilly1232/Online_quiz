@@ -499,7 +499,7 @@ public class UserInterface {
             for (int x = 0; x < listOfQuizzes.size(); x++) {
                 // for x is less than the list of quizzes
                 System.out.println((x + 1) + ": " + listOfQuizzes.get(x).getQuizName());
-                // output i+1 along with the question that value is associated with from the list of quizzes
+                // output x+1 along with the question that value is associated with from the list of quizzes
             }
             // takes the user choice from the displayed list of quizzes
             userChoice = Integer.parseInt(sc.nextLine());
