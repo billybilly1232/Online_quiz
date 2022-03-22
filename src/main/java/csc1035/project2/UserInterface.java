@@ -520,6 +520,7 @@ public class UserInterface {
                     2. 10
                     3. 15
                     4. 20
+                    
                     """);
     }
 }
