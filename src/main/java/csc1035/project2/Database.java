@@ -183,6 +183,19 @@ public class Database {
 
     }
 
+    public Quiz readQuizByTopic(String topicOfQuiz){
+
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        s.beginTransaction();
+        Query quizQuery = s.createQuery("from QUIZ q where q.topicOfQuiz = :Topic");
+        quizQuery.setParameter("Topic", topicOfQuiz);
+        s.getTransaction().commit();
+        Quiz quiz = (Quiz) quizQuery.getResultList().get(0);
+        s.close();
+        return quiz;
+    }
+
+
     public void updateQuiz(int quizID,String detailType, String updateString) {
         // method for updating/editing a question
         Session s = null;
