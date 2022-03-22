@@ -482,7 +482,6 @@ public class UserInterface {
         d.createQuiz(quizName, quizTopic, lengthOfQuiz, questionIDList);
     }
 
-
     /**
      * method for displaying a list of quizzes that is mapped to a numerical value for the user
      *
