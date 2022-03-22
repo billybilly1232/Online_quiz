@@ -101,6 +101,7 @@ public class Database {
             Question q = s.get(Question.class, questionID);
             List <Quiz> testlist = readAllQuizzes();
             for (Quiz quiz : testlist){
+                s.update(quiz);
                 if (quiz.getQuestions().contains(q)){
                     quiz.removeQuestion(q);
                     s.update(quiz);
