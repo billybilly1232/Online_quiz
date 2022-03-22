@@ -14,9 +14,9 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update </property>
 
-        <mapping class="Question" /> <!--- Add a new mapping class for a new table in the database -->
-        <mapping class="Quiz" />
-        <mapping class="Log" />
+        <mapping class="csc1035.project2.Question" /> <!--- Add a new mapping class for a new table in the database -->
+        <mapping class="csc1035.project2.Quiz" />
+        <mapping class="csc1035.project2.Log" />
 
 
     </session-factory>

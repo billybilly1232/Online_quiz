@@ -1,4 +1,8 @@
-import csc1035.project2.HibernateUtil;
+package testing;
+
+import csc1035.project2.hibernate.HibernateUtil;
+import csc1035.project2.Log;
+import csc1035.project2.Quiz;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 

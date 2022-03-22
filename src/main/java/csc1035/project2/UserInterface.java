@@ -1,3 +1,5 @@
+package csc1035.project2;
+
 import java.util.*;
 import java.util.List;
 import java.util.Scanner;
@@ -86,7 +88,7 @@ public class UserInterface {
                                  */
                                 String updatedQuestion = update("Update the question itself.", "Please enter the new question: ");
                                 // updates the question with the values provided
-                                d.updateQuestion(editedQuestion, "Question", updatedQuestion);
+                                d.updateQuestion(editedQuestion, "csc1035.project2.Question", updatedQuestion);
                             }
                             case 2 -> {
                                   /* update the answer
@@ -138,7 +140,7 @@ public class UserInterface {
                         if (deletedQuestion){
                             // if deleted question is returned as true, deletes the question
                             d.deleteQuestion(deleteQuestionNumber);
-                            System.out.println("Question deleted.");
+                            System.out.println("csc1035.project2.Question deleted.");
                         }
                         else{
                             // else, outputs that the deletion was cancelled
@@ -188,7 +190,7 @@ public class UserInterface {
                                  */
                                 String updatedQuiz = update("Update the question itself.", "Please enter the new question: ");
                                 // updates the question with the values provided
-                                d.updateQuiz(editedQuiz, "Quiz", updatedQuiz);
+                                d.updateQuiz(editedQuiz, "csc1035.project2.Quiz", updatedQuiz);
                             }
                             case 2 -> {
                                   /*
@@ -226,7 +228,7 @@ public class UserInterface {
                         if (deletedQuiz){
                             // if delete quiz is true, delete the quiz
                             d.deleteQuestion(deleteQuizNumber);
-                            System.out.println("Quiz deleted.");
+                            System.out.println("csc1035.project2.Quiz deleted.");
                         }
                         else{
                             // deletion is cancelled
@@ -270,7 +272,7 @@ public class UserInterface {
      * <p>Asks the user for the question details (question, answer, marks of the question,
      * the topic of the question, the type of question.)</p>
      *
-     * @return Question- a new instance of the question class
+     * @return csc1035.project2.Question- a new instance of the question class
      */
     private Question questionDetails() {
         // initialises a scanner
@@ -325,14 +327,14 @@ public class UserInterface {
         // prints out the main menu
         System.out.println("""
 
-                1: Create a Question.
-                2: Read a Question
-                3: Update a Question
-                4: Delete a Question
-                5: Create a Quiz
-                6: Read a Quiz
-                7: Update a Quiz
-                8: Delete a Quiz
+                1: Create a csc1035.project2.Question.
+                2: Read a csc1035.project2.Question
+                3: Update a csc1035.project2.Question
+                4: Delete a csc1035.project2.Question
+                5: Create a csc1035.project2.Quiz
+                6: Read a csc1035.project2.Quiz
+                7: Update a csc1035.project2.Quiz
+                8: Delete a csc1035.project2.Quiz
                 9: Search by Topic
                 10: Search by Type
                 11: View Statistics
@@ -407,7 +409,7 @@ public class UserInterface {
         String delete = sc.nextLine();
         if (delete.equals("y") || delete.equals("Y")){
             // if delete is yes, returns true
-            System.out.println("Question will now be deleted.");
+            System.out.println("csc1035.project2.Question will now be deleted.");
             return true;
         }
         // else returns false

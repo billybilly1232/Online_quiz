@@ -1,6 +1,11 @@
+package testing;
+
+import csc1035.project2.Database;
+import csc1035.project2.Question;
+import csc1035.project2.Quiz;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import csc1035.project2.HibernateUtil;
+import csc1035.project2.hibernate.HibernateUtil;
 
 import java.util.*;
 
@@ -9,24 +14,24 @@ public class TestingManyToMany {
     public static void main(String[] args) {
         Session session = null;
 
-        Question q1 = new Question("Why Square?","Existensial Questions","SAQ","Maths",21,false);
-        Question q2 = new Question("Commit hard? \n 1. Yes \n 2. No","Git","MCQ","1",69,false);
-        Set<Question> questions = new HashSet<>(Arrays.asList(q1,q2));
-        Quiz quiz1 = new Quiz("iMAGE","Life",2);
-        Set<Quiz> quizzes = new HashSet<>(Arrays.asList(quiz1));
+        csc1035.project2.Question q1 = new csc1035.project2.Question("Why Square?","Existensial Questions","SAQ","Maths",21,false);
+        csc1035.project2.Question q2 = new csc1035.project2.Question("Commit hard? \n 1. Yes \n 2. No","Git","MCQ","1",69,false);
+        Set<csc1035.project2.Question> questions = new HashSet<>(Arrays.asList(q1,q2));
+        csc1035.project2.Quiz quiz1 = new csc1035.project2.Quiz("iMAGE","Life",2);
+        Set<csc1035.project2.Quiz> quizzes = new HashSet<>(Arrays.asList(quiz1));
 
 
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            for (Question question : questions){
+            for (csc1035.project2.Question question : questions){
                 session.persist(question);
             }
-            for (Quiz quiz : quizzes){
+            for (csc1035.project2.Quiz quiz : quizzes){
                 session.persist(quiz);
             }
-            for (Question question : questions){
+            for (csc1035.project2.Question question : questions){
                 question.setQuizzes(quizzes);
                 session.persist(question);
             }

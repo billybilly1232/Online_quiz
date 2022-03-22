@@ -1,3 +1,5 @@
+package csc1035.project2;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -101,7 +103,7 @@ public class Quiz {
 
     @Override
     public String toString() {
-        return "Quiz{" +
+        return "csc1035.project2.Quiz{" +
                 "quizID=" + quizID +
                 ", quizName='" + quizName + '\'' +
                 ", topicOfQuiz='" + topicOfQuiz + '\'' +

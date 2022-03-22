@@ -1,5 +1,6 @@
+package csc1035.project2;
+
 import javax.persistence.*;
-import java.util.List;
 
 @Entity(name = "LOG")
 public class Log {

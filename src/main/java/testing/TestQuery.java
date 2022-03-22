@@ -1,8 +1,9 @@
-import csc1035.project2.HibernateUtil;
+package testing;
+
+import csc1035.project2.hibernate.HibernateUtil;
+import csc1035.project2.Question;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
-import java.util.List;
 
 
 public class TestQuery {
@@ -14,11 +15,11 @@ public class TestQuery {
 
         Query query = s.createQuery(hql);
 
-        List<Question> results = query.list();
+        List<csc1035.project2.Question> results = query.list();
 
         s.getTransaction().commit();
 
-        for (Question q : results){
+        for (csc1035.project2.Question q : results){
             System.out.println(q.toString());
         }
     }

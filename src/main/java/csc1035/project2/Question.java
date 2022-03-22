@@ -1,3 +1,5 @@
+package csc1035.project2;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -37,7 +39,7 @@ public class Question {
             inverseJoinColumns = {@JoinColumn(name = "quizID")})
     private Set<Quiz> quizzes = new HashSet<>();
 
-    // constrictor for the Question class
+    // constrictor for the csc1035.project2.Question class
     public Question(){}
 
     public Question(String question, String topicOfQuestion, String typeOfQuestion, String answer, int marks, boolean incorrectlyAnswered) {
@@ -119,7 +121,7 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
+        return "csc1035.project2.Question{" +
                 "questionID=" + questionID +
                 ", question='" + question + '\'' +
                 ", topicOfQuestion='" + topicOfQuestion + '\'' +

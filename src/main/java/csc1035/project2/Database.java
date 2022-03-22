@@ -1,4 +1,6 @@
-import csc1035.project2.HibernateUtil;
+package csc1035.project2;
+
+import csc1035.project2.hibernate.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -57,7 +59,7 @@ public class Database {
             switch (detailType){
                 case "Topic"-> q.setTopicOfQuestion(updateString);
                 case "Type"-> q.setTypeOfQuestion(updateString);
-                case "Question"-> q.setQuestion(updateString);
+                case "csc1035.project2.Question"-> q.setQuestion(updateString);
                 case "Answer"-> q.setAnswer(updateString);
                 case "Marks"-> q.setMarks(Integer.parseInt(updateString));
                 case "IncorrectlyAnswered"-> q.setIncorrectlyAnswered(Boolean.parseBoolean(updateString));

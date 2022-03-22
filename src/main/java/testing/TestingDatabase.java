@@ -1,6 +1,6 @@
-import csc1035.project2.HibernateUtil;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+package testing;
+
+import csc1035.project2.Database;
 
 public class TestingDatabase {
     /*
@@ -17,7 +17,7 @@ public class TestingDatabase {
             // begins the transaction
             session.beginTransaction();
             // creates a new instance of the question class
-            Question q = new Question();
+            csc1035.project2.Question q = new csc1035.project2.Question();
             // sets the fields of the class to hardcoded data
             q.setTopicOfQuestion("memes");
             //q.setType("SAQ");
@@ -43,7 +43,7 @@ public class TestingDatabase {
      */
     public static void main(String[] args) {
         Database d = new Database();
-        //d.createQuestion(new Question("What is the CPU?","Architecture","SAQ","Central Proccessing Unit", 10, false));
+        //d.createQuestion(new csc1035.project2.Question("What is the CPU?","Architecture","SAQ","Central Proccessing Unit", 10, false));
         //System.out.println(d.readQuestion(8).toString());
         //d.updateQuestion(8, "Type", "MCQ");
         //System.out.println(d.readQuestion(8).toString());
