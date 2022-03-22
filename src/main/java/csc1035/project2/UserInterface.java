@@ -54,13 +54,13 @@ public class UserInterface {
                 case 1 -> {
                     // create a question
                     System.out.println("Create a question.");
-                    d.createQuestion(questionDetails());
+                    d.createQuestion(createQuestion());
                 }
                 case 2 -> {
                     // read a question
                     System.out.println("Read/view a question.");
                     // calls the input question function
-                    int questionID = inputQuestion();
+                    int questionID = listOfQuestion();
                     if (questionID != -1){
                         // if question ID does not equal -1, print out the specified question
                         System.out.println(d.readQuestion(questionID).toString());
@@ -75,7 +75,7 @@ public class UserInterface {
                     System.out.println("Update/edit a question.");
                     System.out.println("Which question would you like to edit? ");
                     // calls the input question function
-                    int editedQuestion = inputQuestion();
+                    int editedQuestion = listOfQuestion();
                     if (editedQuestion != -1) {
                         // if the given value does not equal -1, call the update menu for questions
                       updateMenuQuestion();
@@ -133,7 +133,7 @@ public class UserInterface {
                     /* delete a question
                     calls the input question function
                      */
-                    int deleteQuestionNumber = inputQuestion();
+                    int deleteQuestionNumber = listOfQuestion();
                     if (deleteQuestionNumber != -1) {
                         // if deleteQuestionNumber doesn't equal -1, calls the delete function with the parameters provided
                         Boolean deletedQuestion = delete("Delete a question. ", "Would you like to delete it? ");
@@ -161,7 +161,7 @@ public class UserInterface {
                     //read a quiz
                     System.out.println("Read/view a quiz.");
                     // calls the input quiz function
-                    int quizID = inputQuiz();
+                    int quizID = listOfQuiz();
                     if (quizID != -1){
                         // if the quiz ID doesn't equal -1, outputs the specified quiz
                         System.out.println(d.readQuiz(quizID).toString());
@@ -176,7 +176,7 @@ public class UserInterface {
                     System.out.println("Update/edit a quiz.");
                     System.out.println("Which question would you like to edit? ");
                     // calls the input quiz method
-                    int editedQuiz = inputQuiz();
+                    int editedQuiz = listOfQuiz();
                     if (editedQuiz != -1) {
                         // if the specified quiz is not equal to -1, calls rhe update menu function
                         updateMenuQuiz();
@@ -221,7 +221,7 @@ public class UserInterface {
                     /*delete a quiz
                     calls the input quiz function
                      */
-                    int deleteQuizNumber = inputQuiz();
+                    int deleteQuizNumber = listOfQuiz();
                     if (deleteQuizNumber != -1) {
                         // if the chosen quiz does not equal -1, call the delete function with the parameters provided
                         Boolean deletedQuiz = delete("Delete a quiz. ", "Would you like to delete it? ");
@@ -267,14 +267,14 @@ public class UserInterface {
     }
 
     /**
-     * the method for question details.
+     * the method to create a question.
      *
      * <p>Asks the user for the question details (question, answer, marks of the question,
      * the topic of the question, the type of question.)</p>
      *
      * @return csc1035.project2.Question- a new instance of the question class
      */
-    private Question questionDetails() {
+    private Question createQuestion() {
         // initialises a scanner
         Scanner sc = new Scanner(System.in);
         // asks the user for the details of the sale
@@ -293,144 +293,7 @@ public class UserInterface {
     }
 
     /**
-     * method for displaying a list of questions that is mapped to a numerical value for the user
-     *
-     * @return listOfQuestions - a list of questions mapped to numerical values. or returns -1
-     */
-    private int inputQuestion() {
-        // initialises a new instance of the database and a new scanner
-        Database d = new Database();
-        Scanner sc = new Scanner(System.in);
-        int userChoice;
-        // creates a list of all questions by reading the database
-        List<Question> listOfQuestions = d.readAllQuestions();
-        if (listOfQuestions != null){
-            // if the list of questions is not null
-            for (int x = 0; x < listOfQuestions.size(); x++ ){
-                // for x is less than the list of questions
-                System.out.println((x + 1) +  ": " +  listOfQuestions.get(x).getQuestion());
-                // output x+1 along with the question that value is associated with from the list of questions
-            }
-            // takes the user choice from the displayed list of questions
-            userChoice = Integer.parseInt(sc.nextLine());
-            // returns the id of the question linked to that choice
-            return listOfQuestions.get(userChoice -1).getQuestionID();
-        }
-        // if the list is null, return -1
-        return -1;
-    }
-
-    /**
-     * a method to display the main menu
-     */
-    private void menu() {
-        // prints out the main menu
-        System.out.println("""
-
-                1: Create a csc1035.project2.Question.
-                2: Read a csc1035.project2.Question
-                3: Update a csc1035.project2.Question
-                4: Delete a csc1035.project2.Question
-                5: Create a csc1035.project2.Quiz
-                6: Read a csc1035.project2.Quiz
-                7: Update a csc1035.project2.Quiz
-                8: Delete a csc1035.project2.Quiz
-                9: Search by Topic
-                10: Search by Type
-                11: View Statistics
-                12: Quit
-                
-                """);
-    }
-
-    /**
-     * a method to display the update menu for a question
-     */
-    private void updateMenuQuestion() {
-        // prints out the menu for updating a question
-        System.out.println("""   
-                             
-                What would you like to update:
-                1. The question itself
-                2. The answer
-                3. The type of question
-                4. The topic of the question
-                5. How many marks the question is worth
-                
-                """);
-    }
-
-    /**
-     * a method to display the update menu for a quiz
-     */
-    private void updateMenuQuiz() {
-        // prints out the menu for updating a quiz
-        System.out.println("""                
-                                
-                What would you like to update:
-                1. The quiz name
-                2. The length of the quiz
-                3. The topic of the quiz
-
-                """);
-    }
-
-    /**
-     * a method to display the menu of quiz lengths
-     */
-    private void quizLengthMenu(){
-        // output the quiz length menu
-        System.out.println("""
-                    1. 5
-                    2. 10
-                    3. 15
-                    4. 20
-                    """);
-    }
-
-    /**
-     * my method to update what the user has selected
-     *
-     * @param message - displays what the user has selected to change
-     * @param prompt - prompts the user to input what they want to change
-     * @return updated - the updated value
-     */
-    public String update(String message, String prompt) {
-        // initialises a new instance of the database and a new scanner
-        Scanner sc = new Scanner(System.in);
-        // outputs the given message, and the given prompt
-        System.out.println(message);
-        System.out.println(prompt);
-        // returns the user's answer to the prompt
-        return sc.nextLine();
-    }
-
-    /**
-     * my method to delete what the user has selected
-     *
-     * @param message - displays what the user has selected to change
-     *  @param prompt - prompts the user to input what they want to change
-     * @return a boolean value of true or false
-     */
-    public Boolean delete(String message, String prompt) {
-        // initialises a new instance of the database and a new scanner
-        Scanner sc = new Scanner(System.in);
-        // outputs the given message and the given prompt
-        System.out.println(message);
-        System.out.println(prompt);
-        // takes the value of delete to be what the user input
-        String delete = sc.nextLine();
-        if (delete.equals("y") || delete.equals("Y")){
-            // if delete is yes, returns true
-            System.out.println("csc1035.project2.Question will now be deleted.");
-            return true;
-        }
-        // else returns false
-        return false;
-    }
-
-    /**
-     * the method for question details.
+     * the method to create a quiz.
      *
      * <p>Asks the user for the quiz details (quiz name, length of quiz,
      * topic of quiz.)
@@ -477,7 +340,7 @@ public class UserInterface {
             System.out.println("Please enter the length of the quiz: ");
             lengthOfQuiz = Integer.parseInt(sc.nextLine());
             for (int x = 0; x < lengthOfQuiz; x++) {
-                questionIDList.add(inputQuestion());
+                questionIDList.add(listOfQuestion());
             }
         }
         // add the quizzes with the questions to the database
@@ -485,11 +348,40 @@ public class UserInterface {
     }
 
     /**
+     * method for displaying a list of questions that is mapped to a numerical value for the user
+     *
+     * @return listOfQuestions - a list of questions mapped to numerical values. or returns -1
+     */
+    private int listOfQuestion() {
+        // initialises a new instance of the database and a new scanner
+        Database d = new Database();
+        Scanner sc = new Scanner(System.in);
+        int userChoice;
+        // creates a list of all questions by reading the database
+        List<Question> listOfQuestions = d.readAllQuestions();
+        if (listOfQuestions != null){
+            // if the list of questions is not null
+            System.out.println("Select a numerical option.");
+            for (int x = 0; x < listOfQuestions.size(); x++ ){
+                // for x is less than the list of questions
+                System.out.println((x + 1) +  ": " +  listOfQuestions.get(x).getQuestion());
+                // output x+1 along with the question that value is associated with from the list of questions
+            }
+            // takes the user choice from the displayed list of questions
+            userChoice = Integer.parseInt(sc.nextLine());
+            // returns the id of the question linked to that choice
+            return listOfQuestions.get(userChoice -1).getQuestionID();
+        }
+        // if the list is null, return -1
+        return -1;
+    }
+
+    /**
      * method for displaying a list of quizzes that is mapped to a numerical value for the user
      *
      * @return listOfQuizzes - - a list of quizzes mapped to numerical values. or returns -1
      */
-    private int inputQuiz() {
+    private int listOfQuiz() {
         // initialises a new instance of the database class and a new scanner
         Database d = new Database();
         Scanner sc = new Scanner(System.in);
@@ -498,6 +390,7 @@ public class UserInterface {
         List<Quiz> listOfQuizzes = d.readAllQuizzes();
         // if the list of quizzes is not null
         if (listOfQuizzes != null) {
+            System.out.println("Select a numerical option.");
             for (int x = 0; x < listOfQuizzes.size(); x++) {
                 // for x is less than the list of quizzes
                 System.out.println((x + 1) + ": " + listOfQuizzes.get(x).getQuizName());
@@ -510,5 +403,123 @@ public class UserInterface {
         }
         // if the list is null, return -1
         return -1;
+    }
+
+    /**
+     * my method to update what the user has selected
+     *
+     * @param message - displays what the user has selected to change
+     * @param prompt - prompts the user to input what they want to change
+     * @return updated - the updated value
+     */
+    public String update(String message, String prompt) {
+        // initialises a new instance of the database and a new scanner
+        Scanner sc = new Scanner(System.in);
+        // outputs the given message, and the given prompt
+        System.out.println(message);
+        System.out.println(prompt);
+        // returns the user's answer to the prompt
+        return sc.nextLine();
+    }
+
+    /**
+     * my method to delete what the user has selected
+     *
+     * @param message - displays what the user has selected to change
+     *  @param prompt - prompts the user to input what they want to change
+     * @return a boolean value of true or false
+     */
+    public Boolean delete(String message, String prompt) {
+        // initialises a new instance of the database and a new scanner
+        Scanner sc = new Scanner(System.in);
+        // outputs the given message and the given prompt
+        System.out.println(message);
+        System.out.println(prompt);
+        // takes the value of delete to be what the user input
+        String delete = sc.nextLine();
+        if (delete.equals("y") || delete.equals("Y")){
+            // if delete is yes, returns true
+            System.out.println("csc1035.project2.Question will now be deleted.");
+            return true;
+        }
+        // else returns false
+        return false;
+    }
+
+    /**
+     * a method to display the main menu
+     */
+    private void menu() {
+        // prints out the main menu
+        System.out.println("""
+                
+                Select a numerical option.
+
+                1: Create a question.
+                2: Read a question
+                3: Update a question
+                4: Delete a question
+                5: Create a quiz
+                6: Read a quiz
+                7: Update a quiz
+                8: Delete a quiz
+                9: Search by topic
+                10: Search by type
+                11: View statistics
+                12: Quit
+                
+                """);
+    }
+
+    /**
+     * a method to display the update menu for a question
+     */
+    private void updateMenuQuestion() {
+        // prints out the menu for updating a question
+        System.out.println("""   
+                             
+                Select a numerical option.
+                            
+                What would you like to update:
+                1. The question itself
+                2. The answer
+                3. The type of question
+                4. The topic of the question
+                5. How many marks the question is worth
+                
+                """);
+    }
+
+    /**
+     * a method to display the update menu for a quiz
+     */
+    private void updateMenuQuiz() {
+        // prints out the menu for updating a quiz
+        System.out.println(""" 
+                
+                Select a numerical option.
+                                      
+                What would you like to update:
+                1. The quiz name
+                2. The length of the quiz
+                3. The topic of the quiz
+
+                """);
+    }
+
+    /**
+     * a method to display the menu of quiz lengths
+     */
+    private void quizLengthMenu(){
+        // output the quiz length menu
+        System.out.println("""
+                    
+                    Select a numerical option.
+                    
+                    1. 5
+                    2. 10
+                    3. 15
+                    4. 20
+                    """);
     }
 }
