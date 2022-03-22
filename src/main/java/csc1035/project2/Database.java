@@ -10,9 +10,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * <p>This is the Database class</p>
+ * <P>It contains all the methods that interact with the database using hibernate.
+ * It's methods are for CRUD for Questions, Quizzes, Logs.
+ * Along with methods used for retriving lists of the above for use in identification of them.</P>
+ * @author Bartosz Czajczynski
+ */
 public class Database {
 
-
+    /**
+     *This method adds a question from the given parameter that is a question to the database.
+     * @param questionDetails the question to be added.
+     */
     public void createQuestion(Question questionDetails) {
         // need to figure out how to add the created question to the db
         Session s = null;
@@ -36,6 +46,12 @@ public class Database {
         }
     }
 
+    /**
+     * This method is for reading a question with the primary key same as the parameter.
+     * So that it may be retrieved from the database.
+     * @param questionID the primary key of the question you ar looking for.
+     * @return the question that has the same primary key.
+     */
     public Question readQuestion(int questionID) {
         // method for reading/viewing a question
         Session s = HibernateUtil.getSessionFactory().openSession();
