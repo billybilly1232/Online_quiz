@@ -374,6 +374,19 @@ public class UserInterface {
     }
 
     /**
+     * a method to display the menu of quiz lengths
+     */
+    private void quizLengthMenu(){
+        // output the quiz length menu
+        System.out.println("""
+                    1. 5
+                    2. 10
+                    3. 15
+                    4. 20
+                    """);
+    }
+
+    /**
      * my method to update what the user has selected
      *
      * @param message - displays what the user has selected to change
@@ -469,18 +482,6 @@ public class UserInterface {
         d.createQuiz(quizName, quizTopic, lengthOfQuiz, questionIDList);
     }
 
-    /**
-     * a method to display the menu of quiz lengths
-     */
-    private void quizLengthMenu(){
-        // output the quiz length menu
-        System.out.println("""
-                    1. 5
-                    2. 10
-                    3. 15
-                    4. 20
-                    """);
-    }
 
     /**
      * method for displaying a list of quizzes that is mapped to a numerical value for the user
