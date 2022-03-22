@@ -107,7 +107,6 @@ public class Database {
                 }
             }
             q.setQuizzes(new HashSet<>());
-
             s.delete(q);
             s.getTransaction().commit();
         } catch (HibernateException e) {
