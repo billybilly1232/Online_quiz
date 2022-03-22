@@ -99,6 +99,15 @@ public class Database {
             s = HibernateUtil.getSessionFactory().openSession();
             s.beginTransaction();
             Question q = s.get(Question.class, questionID);
+            List <Quiz> testlist = readAllQuizzes();
+            for (Quiz quiz : testlist){
+                if (quiz.getQuestions().contains(q)){
+                    quiz.removeQuestion(q);
+                    s.update(quiz);
+                }
+            }
+            q.setQuizzes(new HashSet<>());
+
             s.delete(q);
             s.getTransaction().commit();
         } catch (HibernateException e) {
